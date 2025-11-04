@@ -6,8 +6,8 @@ export const About = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             About LazyCook
           </h2>
-          <p className="text-lg max-w-4xl mx-auto text-white/90">
-            LazyCook (v6.0) is an autonomous multi-agent conversational assistant
+          <p className="text-lg max-w-4xl mx-auto text-white/90 leading-relaxed">
+            LazyCook (v5.0) is an autonomous multi-agent conversational assistant
             designed to intelligently process user queries, manage documents,
             store conversations, and maintain iterative AI reasoning loops. It uses
             the Gemini 2.5 Flash model and a four-agent architecture to deliver

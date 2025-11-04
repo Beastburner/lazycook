@@ -11,6 +11,8 @@ export const Documentation = () => {
     { id: "modules", label: "Modules & Classes" },
     { id: "files", label: "Supported File Types" },
     { id: "logging", label: "Logging System" },
+    { id: "usage", label: "Example Usage" },
+    { id: "future", label: "Future Enhancements" },
   ];
 
   return (
@@ -59,42 +61,60 @@ export const Documentation = () => {
 
             {activeSection === "features" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">Core Features</h3>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold text-primary mb-2 flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Multi-Agent AI System</span>
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-5">
-                      Generator, Analyzer, Optimizer, Validator to produce high-quality outputs.
+                <h3 className="text-3xl font-bold mb-6 text-primary">⚙️ Core Features</h3>
+                <div className="space-y-6">
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Multi-Agent AI System</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Composed of four specialized agents — Generator, Analyzer, Optimizer, Validator — to ensure high-quality responses.
                     </p>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-2 flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Smart Context Management</span>
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-5">
-                      Builds context from current session plus historical conversation.
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Smart Context Management</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Dynamically constructs contextual conversation history from both current and previous sessions.
                     </p>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-2 flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Document Handling</span>
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-5">
-                      Upload and parse .txt, .md, .csv, .json, .pdf files.
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Document Handling</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Upload, extract, and analyze <code className="bg-muted px-2 py-0.5 rounded">.txt</code>, <code className="bg-muted px-2 py-0.5 rounded">.pdf</code>, <code className="bg-muted px-2 py-0.5 rounded">.md</code>, <code className="bg-muted px-2 py-0.5 rounded">.csv</code> documents with automatic hashing and metadata tracking.
                     </p>
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-primary mb-2 flex items-start">
-                      <span className="text-primary mr-2">•</span>
-                      <span>Quality Evaluation</span>
-                    </h4>
-                    <p className="text-sm text-muted-foreground ml-5">
-                      Objective & subjective scoring using dedicated agents.
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Quality Evaluation System</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Objective & subjective scoring based on accuracy, completeness, structure, and polish.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Task Scheduling</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Automatically creates and tracks tasks related to conversation insights.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Export System</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Export past conversations to <code className="bg-muted px-2 py-0.5 rounded">.txt</code>, <code className="bg-muted px-2 py-0.5 rounded">.md</code>, or <code className="bg-muted px-2 py-0.5 rounded">.json</code> files.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Query Complexity Analyzer</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Routes user queries intelligently using lightweight or full pipelines.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">Progress & Logging</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Uses the <code className="bg-muted px-2 py-0.5 rounded">rich</code> library for real-time progress bars and visual CLI output.
+                    </p>
+                  </div>
+                  <div className="border-l-4 border-primary pl-4">
+                    <h4 className="font-semibold text-foreground mb-2">UTF-8 Safe Logging</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Works seamlessly on Windows with enforced UTF-8 encoding.
                     </p>
                   </div>
                 </div>
@@ -103,74 +123,202 @@ export const Documentation = () => {
 
             {activeSection === "architecture" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">System Architecture</h3>
-                <p className="text-foreground mb-4 leading-relaxed">
-                  LazyCook employs a <strong>four-agent architecture</strong> coordinated by a MultiAgentSystem:
+                <h3 className="text-3xl font-bold mb-6 text-primary">🧩 System Architecture</h3>
+                <div className="bg-[#1C1B1B] text-white p-6 rounded-xl font-mono text-sm overflow-x-auto mb-6">
+                  <pre className="whitespace-pre">{`    User
+     │
+     ▼
+    AutonomousMultiAgentAssistant
+     ├── TextFileManager  (File & Context Storage)
+     ├── MultiAgentSystem  (Coordinator)
+     │     ├── AIAgent [Generator]
+     │     ├── AIAgent [Analyzer]
+     │     ├── AIAgent [Optimizer]
+     │     └── AIAgent [Validator]
+     ├── QueryComplexityAnalyzer (Routing Logic)
+     └── QualityMetrics (Evaluation Engine)`}</pre>
+                </div>
+                <p className="text-foreground leading-relaxed">
+                  The architecture is designed for high-quality iterative response generation. Each query flows through 
+                  the system where specialized agents collaborate to produce accurate, complete, and polished answers.
                 </p>
-                <ul className="space-y-3 text-foreground">
-                  <li className="flex items-start">
-                    <span className="text-primary font-semibold mr-2">1.</span>
-                    <span><strong>Generator:</strong> Creates initial responses</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary font-semibold mr-2">2.</span>
-                    <span><strong>Analyzer:</strong> Evaluates quality and context</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary font-semibold mr-2">3.</span>
-                    <span><strong>Optimizer:</strong> Refines and improves outputs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-primary font-semibold mr-2">4.</span>
-                    <span><strong>Validator:</strong> Ensures correctness and completeness</span>
-                  </li>
-                </ul>
               </div>
             )}
 
             {activeSection === "agents" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">Multi-Agent Roles</h3>
-                <p className="text-foreground leading-relaxed">
-                  Each agent has a specific role in the pipeline. The Generator creates content,
-                  the Analyzer reviews it, the Optimizer enhances it, and the Validator performs
-                  final quality checks before delivering the response to the user.
-                </p>
+                <h3 className="text-3xl font-bold mb-6 text-primary">🧠 Multi-Agent Roles</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="bg-muted">
+                        <th className="border border-border p-3 text-left font-semibold">Agent</th>
+                        <th className="border border-border p-3 text-left font-semibold">Role</th>
+                        <th className="border border-border p-3 text-left font-semibold">Function</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-border p-3 font-semibold text-primary">Generator</td>
+                        <td className="border border-border p-3">Creative</td>
+                        <td className="border border-border p-3">Produces the first draft of the solution using past context and user query.</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border p-3 font-semibold text-primary">Analyzer</td>
+                        <td className="border border-border p-3">Critical</td>
+                        <td className="border border-border p-3">Evaluates the generated solution, identifying errors, gaps, and missing logic.</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border p-3 font-semibold text-primary">Optimizer</td>
+                        <td className="border border-border p-3">Refinement</td>
+                        <td className="border border-border p-3">Enhances the response clarity, detail, and contextual coherence.</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border p-3 font-semibold text-primary">Validator</td>
+                        <td className="border border-border p-3">Assurance</td>
+                        <td className="border border-border p-3">Confirms factual accuracy and completeness of the final answer.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             )}
 
             {activeSection === "modules" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">Modules & Classes</h3>
-                <p className="text-foreground leading-relaxed">
-                  The codebase is organized into modules for document handling, agent coordination,
-                  context management, and conversation storage. Key classes include DocumentHandler,
-                  MultiAgentSystem, ContextManager, and ConversationLogger.
-                </p>
+                <h3 className="text-3xl font-bold mb-6 text-primary">📦 Modules & Classes</h3>
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">1️⃣ TextFileManager</h4>
+                    <p className="text-foreground mb-3">Handles file persistence for conversations, tasks, and documents.</p>
+                    <div className="bg-muted p-4 rounded-lg">
+                      <p className="font-semibold mb-2">Key Methods:</p>
+                      <ul className="space-y-1 text-sm">
+                        <li><code className="bg-background px-2 py-0.5 rounded">save_conversation()</code> — Store user–AI interactions</li>
+                        <li><code className="bg-background px-2 py-0.5 rounded">get_conversation_context()</code> — Build session + history context</li>
+                        <li><code className="bg-background px-2 py-0.5 rounded">process_uploaded_file()</code> — Parse .pdf, .txt, .csv, .md</li>
+                        <li><code className="bg-background px-2 py-0.5 rounded">get_storage_stats()</code> — Analyze storage usage</li>
+                        <li><code className="bg-background px-2 py-0.5 rounded">export_conversations_to_file()</code> — Export chats to multiple formats</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">2️⃣ AIAgent</h4>
+                    <p className="text-foreground">Wraps Google Gemini 2.5 Flash model with async processing and role-based prompts.</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">3️⃣ QueryComplexityAnalyzer</h4>
+                    <p className="text-foreground">Classifies user queries into <code className="bg-muted px-2 py-0.5 rounded">simple</code>, <code className="bg-muted px-2 py-0.5 rounded">medium</code>, or <code className="bg-muted px-2 py-0.5 rounded">complex</code>, determining which agents to use.</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">4️⃣ QualityMetrics</h4>
+                    <p className="text-foreground">Calculates response quality using weighted scores (completeness, accuracy, structure, etc.)</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">5️⃣ MultiAgentSystem</h4>
+                    <p className="text-foreground">Main orchestrator coordinating the 4 AI agents in iterative loops to reach a quality threshold.</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold mb-3 text-primary">6️⃣ AutonomousMultiAgentAssistant</h4>
+                    <p className="text-foreground">High-level interface managing conversations, context, and task scheduling.</p>
+                  </div>
+                </div>
               </div>
             )}
 
             {activeSection === "files" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">Supported File Types</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {['.txt', '.md', '.csv', '.json', '.pdf', '.docx'].map((type) => (
-                    <div key={type} className="bg-muted px-4 py-3 rounded-lg text-center font-mono text-sm">
-                      {type}
-                    </div>
-                  ))}
+                <h3 className="text-3xl font-bold mb-6 text-primary">💾 Supported File Types</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="bg-muted">
+                        <th className="border border-border p-3 text-left font-semibold">Type</th>
+                        <th className="border border-border p-3 text-left font-semibold">Method</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-border p-3 font-mono">.txt, .md, .csv</td>
+                        <td className="border border-border p-3">UTF-8 read</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border p-3 font-mono">.pdf</td>
+                        <td className="border border-border p-3">Extract text using PyPDF2</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-border p-3 font-mono">Others</td>
+                        <td className="border border-border p-3">Metadata only</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             )}
 
             {activeSection === "logging" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">Logging System</h3>
-                <p className="text-foreground leading-relaxed">
-                  LazyCook includes a comprehensive logging system that tracks all conversations,
-                  agent interactions, and system events. Logs can be exported in multiple formats
-                  for analysis and debugging.
+                <h3 className="text-3xl font-bold mb-6 text-primary">💬 Logging System</h3>
+                <p className="text-foreground mb-4">
+                  <strong>File:</strong> <code className="bg-muted px-2 py-1 rounded">multi_agent_assistant.log</code>
                 </p>
+                <div className="bg-[#1C1B1B] text-white p-6 rounded-xl font-mono text-sm overflow-x-auto">
+                  <pre className="whitespace-pre">{`2025-10-31 13:22:51 - INFO - Query classified as: complex
+2025-10-31 13:22:52 - INFO - Iteration 1: Objective=0.913, Subjective=0.867, Combined=0.890
+2025-10-31 13:22:52 - INFO - ✓ Quality threshold met: 0.890 >= 0.880`}</pre>
+                </div>
+              </div>
+            )}
+
+            {activeSection === "usage" && (
+              <div>
+                <h3 className="text-3xl font-bold mb-6 text-primary">🚀 Example Usage</h3>
+                <div className="bg-[#1C1B1B] text-white p-6 rounded-xl overflow-x-auto">
+                  <pre className="font-mono text-sm whitespace-pre">{`from LazyCook5_withJSON import AutonomousMultiAgentAssistant
+import asyncio
+
+assistant = AutonomousMultiAgentAssistant(
+    gemini_api_key="YOUR_API_KEY_HERE"
+)
+
+async def run():
+    response = await assistant.process_user_message(
+        user_id="user123",
+        message="Explain binary search in Python with example."
+    )
+    print(response)
+
+asyncio.run(run())`}</pre>
+                </div>
+              </div>
+            )}
+
+            {activeSection === "future" && (
+              <div>
+                <h3 className="text-3xl font-bold mb-6 text-primary">🧱 Future Enhancements</h3>
+                <ul className="space-y-3 text-foreground">
+                  <li className="flex items-start">
+                    <span className="text-primary mr-3">•</span>
+                    <span>Multi-model fusion (Gemini + LLaMA)</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-3">•</span>
+                    <span>Long-term vector memory</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-3">•</span>
+                    <span>Web dashboard for analytics</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-primary mr-3">•</span>
+                    <span>Voice integration (SpeechRecognition)</span>
+                  </li>
+                </ul>
               </div>
             )}
           </div>
