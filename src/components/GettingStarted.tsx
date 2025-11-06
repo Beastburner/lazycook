@@ -127,7 +127,7 @@ export const GettingStarted = () => {
             
             <div className="bg-foreground/95 text-background p-4 sm:p-6 rounded-2xl font-mono text-xs sm:text-sm border-2 border-primary/50 shadow-2xl overflow-x-auto">
               <div className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-3 sm:py-4 rounded-lg hover:bg-background/10 transition-all duration-200 gap-2">
-                <code className="flex-1 text-primary text-base sm:text-lg break-all sm:break-normal">lazycook run --auto</code>
+                <code className="flex-1 text-primary text-base sm:text-lg break-all sm:break-normal">pip install lazycook</code>
                 <button
                   onClick={() => copyToClipboard('lazycook run --auto', 5)}
                   className="ml-2 sm:ml-4 px-3 sm:px-5 py-2 sm:py-3 bg-primary/30 hover:bg-primary/40 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-sans hover:scale-105 font-bold flex-shrink-0"

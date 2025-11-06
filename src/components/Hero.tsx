@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Copy, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
@@ -11,6 +12,7 @@ export const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [copiedHero, setCopiedHero] = useState(false);
   const fullText = "Your AI that cooks up results — not prompts.";
   const navigate = useNavigate();
 
@@ -56,6 +58,13 @@ export const Hero = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const copyHeroCommand = () => {
+    const cmd = 'pip install lazycook';
+    navigator.clipboard.writeText(cmd);
+    setCopiedHero(true);
+    setTimeout(() => setCopiedHero(false), 2000);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-muted overflow-hidden">
       {/* Animated Background Elements */}
@@ -86,15 +95,38 @@ export const Hero = () => {
 
           {/* Typing Animation Tagline */}
           <div className="mb-8 sm:mb-12 min-h-[80px] sm:min-h-[120px] flex items-center justify-center px-2">
-            <h1 className="relative text-xl sm:text-3xl md:text-5xl lg:text-6xl font-heading font-bold italic tracking-tight animate-gradient-shift leading-tight">
+            <h1
+              className="relative text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-foreground sm:whitespace-nowrap"
+              style={{ fontFamily: '"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif' }}
+            >
               {typedText}
-              <span className={`inline-block w-0.5 sm:w-1 h-8 sm:h-12 md:h-16 ml-1 sm:ml-2 bg-primary ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}></span>
+              <span className={`inline-block w-0.5 sm:w-1 h-6 sm:h-10 md:h-14 ml-1 sm:ml-2 bg-primary ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}></span>
             </h1>
+          </div>
+
+          {/* Install Pill (above CTAs) */}
+          <div className="mb-8 sm:mb-10 px-2">
+            <div className="inline-flex items-center gap-2 sm:gap-3 bg-background/80 backdrop-blur-md border-2 border-primary/40 rounded-2xl px-4 sm:px-6 py-2.5 sm:py-3.5 shadow-[0_8px_30px_rgba(198,61,28,0.15)] ring-1 ring-primary/20 hover:ring-primary/40 transition-all duration-300">
+              <code className="text-sm sm:text-base md:text-lg text-foreground font-mono tracking-tight">
+                pip install lazycook
+              </code>
+              <button
+                onClick={copyHeroCommand}
+                className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-primary/15 hover:bg-primary/25 text-primary text-xs font-medium transition-all hover:scale-105"
+                aria-label={copiedHero ? 'Copied' : 'Copy command'}
+              >
+                {copiedHero ? (
+                  <><Check className="w-4 h-4" /><span>Copied</span></>
+                ) : (
+                  <><Copy className="w-4 h-4" /><span>Copy</span></>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col gap-4 sm:gap-6 justify-center items-center px-2">
-            {/* Row: Primary CTAs side-by-side on >= sm */}
+            {/* Row: All CTAs side-by-side on >= sm, stacked on mobile */}
             <div className="w-full flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             {/* Dynamic Login / Dashboard Button */}
             {!isLoggedIn ? (
@@ -116,7 +148,6 @@ export const Hero = () => {
   <div className="absolute inset-0 z-0 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
 </Button>
             )}
-
             {/* Watch Demo */}
             <Button 
               size="lg"
@@ -126,31 +157,26 @@ export const Hero = () => {
             >
               Watch Demo
             </Button>
-            </div>
-
-            {/* Upcoming Package Download */}
+            
+            {/* Upcoming Package Download (non-interactive) */}
             <Button
               size="lg"
               variant="ghost"
-              disabled
-              className="relative border-2 border-primary/40 text-primary/70 bg-transparent hover:bg-primary/10 px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.2)] group w-full sm:w-auto mt-2"
+              className="relative border-2 border-black/50 text-primary/70 bg-transparent hover:bg-primary/10 px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.2)] group w-full sm:w-auto pointer-events-none cursor-not-allowed"
             >
               <span className="relative z-10 flex flex-col items-center text-center">
                 <span>Download Package</span>
-                <span className="text-xs sm:text-sm opacity-70">Upcoming – no footprint with us</span>
+                <span className="text-xs sm:text-sm text-foreground/70">
+                  <span className="text-black font-black">Upcoming</span>
+                  <span> – no footprint with us</span>
+                </span>
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Button>
-          </div>
-
-          {/* Terminal Preview Hint */}
-          <div className="mt-12 sm:mt-16 opacity-70 hover:opacity-100 transition-opacity duration-300 px-2">
-            <div className="inline-block bg-foreground/5 backdrop-blur-sm border border-primary/20 rounded-xl px-4 sm:px-6 py-2 sm:py-3">
-              <code className="text-xs sm:text-sm md:text-base text-foreground font-mono break-all">
-                pip install lazycook 
-              </code>
             </div>
           </div>
+
+          {/* Install Pill moved above CTAs */}
         </div>
       </div>
 
