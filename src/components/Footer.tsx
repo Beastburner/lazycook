@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Github, Twitter, Mail, ArrowUp } from "lucide-react";
 import logo from "@/assets/logo.png";
 
+
 export const Footer = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
@@ -42,7 +43,7 @@ export const Footer = () => {
                 alt="LazyCook Logo"
                 className="w-12 h-12 transition-transform duration-300 group-hover:scale-110"
               />
-              <span className="text-3xl font-bold">LazyCook</span>
+              <span className="text-3xl font-bold">La<span className="text-red-500">z</span>yCook</span>
             </div>
             <p className="text-background/70 mb-8 max-w-md text-lg leading-relaxed">
               Your autonomous AI assistant that delivers maximum results with minimal prompting. 
@@ -71,30 +72,64 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+            <h3 className="text-[hsl(10,76%,45%)]/80 font-bold italic mb-6 flex items-center gap-2">
               Quick Links
               <div className="h-1 w-8 bg-primary"></div>
             </h3>
             <ul className="space-y-3">
-              {['Documentation', 'API Reference', 'Examples', 'Changelog'].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
-                  >
-                    <span className="relative">
-                      {item}
-                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
-                    </span>
-                  </a>
-                </li>
-              ))}
+                <li>
+    <a
+      href="/docs"
+      className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
+    >
+      <span className="relative">
+        Documentation
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="/api"
+      className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
+    >
+      <span className="relative">
+        API Reference
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="/examples"
+      className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
+    >
+      <span className="relative">
+        Examples
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+      </span>
+    </a>
+  </li>
+
+  <li>
+    <a
+      href="/changelog"
+      className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
+    >
+      <span className="relative">
+        Changelog
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
+      </span>
+    </a>
+  </li>
             </ul>
           </div>
 
           {/* Community */}
           <div>
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+            <h3 className="text-[hsl(10,76%,45%)]/80 font-bold italic mb-6 flex items-center gap-2">
               Community
               <div className="h-1 w-8 bg-primary"></div>
             </h3>
@@ -117,10 +152,22 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-10 border-t border-background/20 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-background/60 text-sm">
-            © {new Date().getFullYear()} LazyCook v5.0 by <strong className="text-primary">Harsh Bhatt</strong>. All rights reserved.
-          </p>
+       <div className="pt-10 border-t border-background/20 flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
+  <p className="text-sm leading-relaxed animate-fade-in">
+    © {new Date().getFullYear()}{" "}
+    <span className="font-semibold text-gradient">LazyCook</span> v5.0 —{" "}
+    <span className="text-[hsla(0, 0%, 100%, 1.00)]/80 font-medium italic">
+      Built by <span className="text-[hsl(10,76%,45%)]/80 font-medium italic">Hitarth Trivedi</span> &amp; <span className="text-[hsl(10,76%,45%)]/80 font-medium italic">Harsh Bhatt</span>
+    </span>
+    ,{" "}
+    <span className="text-[hsla(0, 0%, 100%, 1.00)]/80 font-medium italic">
+  designed by <span className="text-[hsl(10,76%,45%)]/80 font-medium italic"> Parth Soni</span> 
+</span>
+    .{" "}
+    <span className="text-[hsla(0, 0%, 100%, 1.00)]/80 font-medium italic">
+      Presented by <span className="text-[hsl(10,76%,45%)]/80 font-medium italic">ALPHA.KORE</span>
+    </span>.
+  </p>
           <div className="flex space-x-6 text-sm">
             {['Privacy Policy', 'Terms of Service', 'License'].map((item) => (
               <a

@@ -9,10 +9,10 @@ export const Demos = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-            See LazyCook <span className="text-gradient">in Action</span>
+            See La<span className="text-red-500">z</span>yCook <span className="text-gradient">in Action</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Watch how LazyCook's multi-agent system delivers intelligent results with minimal prompting
+            Watch how La<span className="text-red-500">z</span>yCook's multi-agent system delivers intelligent results with minimal prompting
           </p>
         </div>
 

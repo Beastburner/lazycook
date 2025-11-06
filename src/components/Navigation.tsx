@@ -1,9 +1,15 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X, LogOut, LayoutDashboard, LogIn } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
+import logoText from "@/assets/logo-text.png";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
     { label: "About", href: "#about" },
@@ -12,10 +18,31 @@ export const Navigation = () => {
     { label: "Documentation", href: "#documentation" },
   ];
 
+  // Check login session
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsLoggedIn(!!session?.user);
+    };
+    checkSession();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session?.user);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
   };
 
@@ -24,22 +51,26 @@ export const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a 
-            href="#" 
+          <a
+            href="#"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }}
-            className="flex items-center gap-3 group"
+            className="flex items-center group"
           >
-            <img 
-              src={logo}
-              alt="LazyCook Logo"
-              className="w-12 h-12 transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(198,61,28,0.6)]"
-            />
-            <span className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-              LazyCook
-            </span>
+            <div className="flex items-center transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_10px_rgba(198,61,28,0.5)]">
+              <img
+                src={logo}
+                alt="LazyCook Logo"
+                className="w-10 h-10 sm:w-12 sm:h-12 -mr-[10px]"
+              />
+              <img
+                src={logoText}
+                alt="LazyCook"
+                className="h-12 sm:h-14 opacity-90 -ml-[18px] translate-y-[1px]"
+              />
+            </div>
           </a>
 
           {/* Desktop Navigation */}
@@ -55,12 +86,35 @@ export const Navigation = () => {
                 <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </a>
             ))}
-            <a
-              href="/auth"
-              className="ml-4 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.4)]"
-            >
-              Login
-            </a>
+
+            {!isLoggedIn ? (
+              <Button
+                onClick={() => navigate("/auth")}
+                className="ml-4 px-6 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl font-semibold transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.4)]"
+              >
+                <LogIn className="w-4 h-4 mr-2" />
+                Login
+              </Button>
+            ) : (
+              <>
+                <Button
+                  variant="outline"
+                  onClick={() => navigate("/dashboard")}
+                  className="flex items-center gap-2 rounded-xl border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.3)]"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  Dashboard
+                </Button>
+                <Button
+                  onClick={handleLogout}
+                  variant="destructive"
+                  className="flex items-center gap-2 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(198,61,28,0.4)]"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </Button>
+              </>
+            )}
           </div>
 
           {/* Mobile menu button */}
@@ -88,12 +142,44 @@ export const Navigation = () => {
                   {item.label}
                 </a>
               ))}
-              <a
-                href="/auth"
-                className="mt-4 px-4 py-3 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold text-center transition-all duration-300"
-              >
-                Login
-              </a>
+
+              {!isLoggedIn ? (
+                <Button
+                  onClick={() => {
+                    setIsOpen(false);
+                    navigate("/auth");
+                  }}
+                  className="mt-4 w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold text-center transition-all duration-300"
+                >
+                  <LogIn className="w-4 h-4 mr-2" />
+                  Login
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      setIsOpen(false);
+                      navigate("/dashboard");
+                    }}
+                    variant="outline"
+                    className="mt-4 w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-lg font-semibold text-center transition-all duration-300"
+                  >
+                    <LayoutDashboard className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setIsOpen(false);
+                      handleLogout();
+                    }}
+                    variant="destructive"
+                    className="mt-2 w-full rounded-lg font-semibold text-center transition-all duration-300"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Logout
+                  </Button>
+                </>
+              )}
             </div>
           </div>
         )}

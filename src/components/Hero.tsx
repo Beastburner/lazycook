@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 import logoText from "@/assets/logo-text.png";
+import installationPDF from "@/assets/InstallationGuide.pdf";
+import requirementsTXT from "@/assets/requirements.txt";
 
 export const Hero = () => {
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const fullText = "Your AI that cooks up results — not prompts.";
+  const navigate = useNavigate();
 
+  // Typing animation
   useEffect(() => {
     let index = 0;
     const typingInterval = setInterval(() => {
@@ -29,6 +36,21 @@ export const Hero = () => {
     };
   }, []);
 
+  // Auth session state
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsLoggedIn(!!session?.user);
+    };
+    checkSession();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session?.user);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -44,7 +66,7 @@ export const Hero = () => {
 
       <div className="container mx-auto px-4 py-20 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Logo - With hover glow effect */}
+          {/* Logo */}
           <div className="mb-8 inline-block group">
             <img 
               src={logo}
@@ -64,22 +86,36 @@ export const Hero = () => {
 
           {/* Typing Animation Tagline */}
           <div className="mb-12 min-h-[120px] flex items-center justify-center">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight text-foreground">
+            <h1 className="relative text-3xl md:text-5xl lg:text-6xl font-heading font-bold italic tracking-tight  animate-gradient-shift">
               {typedText}
               <span className={`inline-block w-1 h-12 md:h-16 ml-2 bg-primary ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}></span>
             </h1>
           </div>
 
-          {/* CTA Buttons with Glow */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button 
-              size="lg"
-              onClick={() => scrollToSection('manual')}
-              className="relative bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-[0_0_30px_rgba(198,61,28,0.5)] transition-all duration-300 hover:scale-105 px-10 py-7 text-lg rounded-2xl group overflow-hidden"
-            >
-              <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </Button>
+            {/* Dynamic Login / Dashboard Button */}
+            {!isLoggedIn ? (
+              <Button 
+                size="lg"
+                onClick={() => navigate("/auth")}
+                className="relative bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-[0_0_30px_rgba(198,61,28,0.5)] transition-all duration-300 hover:scale-105 px-10 py-7 text-lg rounded-2xl group overflow-hidden"
+              >
+                <span className="relative z-10">Get Started</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Button>
+            ) : (
+             <Button 
+  size="lg"
+  onClick={() => navigate("/dashboard")}
+  className="relative z-10 border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground px-10 py-7 text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.3)]"
+>
+  <span className="relative z-20 font-semibold">Go to Dashboard</span>
+  <div className="absolute inset-0 z-0 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+</Button>
+            )}
+
+            {/* Watch Demo */}
             <Button 
               size="lg"
               variant="outline"
@@ -88,13 +124,27 @@ export const Hero = () => {
             >
               Watch Demo
             </Button>
+
+            {/* Upcoming Package Download */}
+            <Button
+              size="lg"
+              variant="ghost"
+              disabled
+              className="relative border-2 border-primary/40 text-primary/70 bg-transparent hover:bg-primary/10 px-10 py-7 text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.2)] group"
+            >
+              <span className="relative z-10 flex flex-col items-center text-center">
+                <span>Download Package</span>
+                <span className="text-sm opacity-70">Upcoming – no footprint with us</span>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </Button>
           </div>
 
           {/* Terminal Preview Hint */}
           <div className="mt-16 opacity-70 hover:opacity-100 transition-opacity duration-300">
             <div className="inline-block bg-foreground/5 backdrop-blur-sm border border-primary/20 rounded-xl px-6 py-3">
               <code className="text-sm md:text-base text-foreground font-mono">
-                $ lazycook run --auto
+                pip install lazycook 
               </code>
             </div>
           </div>

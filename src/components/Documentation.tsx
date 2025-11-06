@@ -19,7 +19,7 @@ export const Documentation = () => {
     <section id="documentation" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold mb-16 text-foreground text-center">
-          LazyCook — Documentation (v5.0)
+          La<span className="text-red-500">z</span>yCook — Documentation (v1.0.2)
         </h2>
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[300px_1fr] gap-8">

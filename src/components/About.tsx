@@ -16,7 +16,7 @@ export const About = () => {
         {/* Header */}
         <div className="text-center mb-20 animate-fade-in-up">
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-            About <span className="text-gradient">LazyCook</span>
+            About <span>La<span className="text-red-500">z</span>yCook</span>
           </h2>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
             An <strong className="text-primary">autonomous multi-agent AI assistant</strong> that runs in your terminal. 
@@ -34,7 +34,7 @@ export const About = () => {
         <div className="max-w-6xl mx-auto mb-16 bg-gradient-to-br from-card via-card to-card/50 border-2 border-primary/20 rounded-3xl p-8 md:p-12 shadow-2xl hover:shadow-[0_0_50px_rgba(198,61,28,0.3)] transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           <div className="grid md:grid-cols-3 gap-8 mb-10">
             <div className="text-center group">
-              <div className="text-5xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">v5.0</div>
+              <div className="text-5xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">v1.0.2</div>
               <div className="text-sm text-muted-foreground uppercase tracking-wider">Current Version</div>
             </div>
             <div className="text-center group">
@@ -53,7 +53,7 @@ export const About = () => {
               System Architecture
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              LazyCook employs a sophisticated four-agent architecture where each agent plays a specialized role:
+              La<span className="text-red-500">z</span>yCook employs a sophisticated four-agent architecture where each agent plays a specialized role:
               <strong className="text-foreground"> Generator</strong> creates initial solutions, 
               <strong className="text-foreground"> Analyzer</strong> evaluates quality, 
               <strong className="text-foreground"> Optimizer</strong> refines outputs, and 

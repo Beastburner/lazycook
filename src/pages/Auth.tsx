@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import logo from "@/assets/logo.png";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
@@ -118,34 +119,12 @@ export default function Auth() {
       <div className="w-full max-w-md space-y-8">
         {/* Logo */}
         <div className="text-center">
-          <svg 
-            viewBox="0 0 200 200" 
-            className="w-32 h-32 mx-auto mb-4"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M 100 40 L 140 30 L 170 60 L 160 100"
-              stroke="#C63D1C"
-              strokeWidth="16"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 100 50 L 110 120 L 130 180"
-              stroke="#1C1B1B"
-              strokeWidth="14"
-              fill="none"
-              strokeLinecap="round"
-            />
-            <path
-              d="M 90 90 L 130 70"
-              stroke="#1C1B1B"
-              strokeWidth="18"
-              fill="none"
-              strokeLinecap="round"
-            />
-          </svg>
-          <h1 className="text-3xl font-bold text-foreground">Welcome to LazyCook</h1>
+          <img
+      src={logo}
+      alt="LazyCook Logo"
+      className="w-32 h-32 mx-auto mb-4 object-contain transition-all duration-500 hover:scale-105"
+    />
+          <h1 className="text-3xl font-bold text-foreground">Welcome to La<span className="text-red-500">z</span>yCook</h1>
           <p className="text-muted-foreground mt-2">
             {isLogin ? "Sign in to continue" : "Create your account"}
           </p>

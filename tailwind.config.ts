@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
@@ -58,6 +59,10 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      fontFamily: {
+    heading: ["'DM Sans'", "sans-serif"],  // or "Outfit"
+    sans: ["'Inter'", "system-ui", "sans-serif"],
+  },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

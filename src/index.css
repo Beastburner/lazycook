@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ==========================
+   🎨 LazyCook Design System
+   ========================== */
 
 @layer base {
   :root {
@@ -38,7 +38,7 @@ All colors MUST be HSL.
     --ring: 10 76% 45%;
 
     --radius: 0.75rem;
-    
+
     /* Custom Design Tokens */
     --glow-primary: 10 76% 45%;
     --gradient-hero: linear-gradient(135deg, hsl(37 63% 94%), hsl(37 50% 88%));
@@ -48,22 +48,70 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
-}
 
-@layer base {
-  * {
-    @apply border-border;
+  /* ==========================
+     ✨ Typography System
+     ========================== */
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
   }
-  
-  html {
-    scroll-behavior: smooth;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: hsl(var(--foreground));
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  h2 {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.1rem;
+    color: hsl(var(--muted-foreground));
+  }
+
+  strong {
+    color: hsl(var(--foreground));
+    font-weight: 600;
+  }
+
+  button, a {
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  * {
+    @apply border-border;
   }
 }
 
+/* ==========================
+   ⚡ Utility Animations
+   ========================== */
 @layer utilities {
   .fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
@@ -78,7 +126,7 @@ All colors MUST be HSL.
   .glow-effect {
     box-shadow: 0 0 20px hsla(var(--glow-primary), 0.3);
   }
-  
+
   .text-gradient {
     background: linear-gradient(135deg, hsl(var(--primary)), hsl(10 76% 55%));
     -webkit-background-clip: text;
@@ -96,7 +144,7 @@ All colors MUST be HSL.
       transform: translateY(0);
     }
   }
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -105,22 +153,7 @@ All colors MUST be HSL.
       opacity: 1;
     }
   }
-  
-  @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  }
-  
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
-  
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0);

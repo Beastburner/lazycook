@@ -6,8 +6,8 @@ export const TerminalDemo = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const terminalSequence = [
-    { type: "input", text: "$ lazycook run --auto" },
-    { type: "output", text: "🧠 LazyCook v5.0 initialized..." },
+    { type: "input", text: "pip install lazycook and run the file" },
+    { type: "output", text: "🧠 LazyCook v1.0 initialized..." },
     { type: "output", text: "✓ Generator Agent: Creating solution..." },
     { type: "output", text: "✓ Analyzer Agent: Evaluating quality..." },
     { type: "output", text: "✓ Optimizer Agent: Refining output..." },
