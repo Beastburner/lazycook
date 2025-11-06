@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Copy, Check, Terminal, Box, Cog, Rocket } from "lucide-react";
 
 export const GettingStarted = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
@@ -10,121 +11,132 @@ export const GettingStarted = () => {
   };
 
   return (
-    <section id="manual" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-            Getting Started
+    <section id="manual" className="py-24 bg-background relative overflow-hidden">
+      {/* Floating Gradient Orbs */}
+      <div className="absolute top-0 right-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16 animate-fade-in-up">
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+            Getting <span className="text-gradient">Started</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Quick start guide to install, configure, and run LazyCook locally.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Quick start guide to install, configure, and run LazyCook locally in minutes.
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-6xl mx-auto space-y-8">
           {/* Prerequisites */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
-            <h3 className="text-2xl font-semibold mb-6 text-primary">Prerequisites</h3>
-            <ul className="space-y-3 text-foreground">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Python 3.10 or newer</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Internet access for API calls to Gemini</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">•</span>
-                <span>Google AI Studio account to obtain an API key</span>
-              </li>
+          <div className="group bg-card/50 backdrop-blur-sm p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,61,28,0.15)] animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                <Box className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-foreground">Prerequisites</h3>
+            </div>
+            <ul className="space-y-4 ml-2">
+              {[
+                "Python 3.10 or newer",
+                "Internet access for API calls to Gemini",
+                "Google AI Studio account to obtain an API key"
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3 text-lg text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                  <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Install */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
-            <h3 className="text-2xl font-semibold mb-4 text-primary">Install</h3>
-            <p className="text-foreground mb-4">
-              Recommended: install via <code className="bg-muted px-2 py-1 rounded">pip</code> into a virtual environment.
+          <div className="group bg-card/50 backdrop-blur-sm p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,61,28,0.15)] animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                <Terminal className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-foreground">Install</h3>
+            </div>
+            <p className="text-lg text-muted-foreground mb-6">
+              Recommended: install via <code className="bg-foreground/10 px-3 py-1 rounded-lg text-primary font-mono">pip</code> into a virtual environment.
             </p>
             
-            <div className="bg-[#1C1B1B] text-white p-6 rounded-xl font-mono text-sm overflow-x-auto relative">
-              <div className="space-y-2">
-                <div className="flex justify-between items-start">
-                  <code>python -m venv .venv</code>
+            <div className="bg-foreground/95 text-background p-6 rounded-2xl font-mono text-sm space-y-4 border-2 border-primary/30 shadow-xl">
+              {[
+                { cmd: "python -m venv .venv", idx: 0 },
+                { cmd: "source .venv/bin/activate  # macOS / Linux", idx: 1 },
+                { cmd: ".venv\\Scripts\\activate     # Windows", idx: 2 },
+                { cmd: "pip install lazycook", idx: 3 }
+              ].map(({ cmd, idx }) => (
+                <div key={idx} className="flex justify-between items-center bg-background/5 px-4 py-3 rounded-lg hover:bg-background/10 transition-all duration-200 group/cmd">
+                  <code className="flex-1">{cmd}</code>
                   <button
-                    onClick={() => copyToClipboard('python -m venv .venv', 0)}
-                    className="px-3 py-1 bg-background text-foreground text-xs rounded hover:bg-background/80 transition-colors ml-4"
+                    onClick={() => copyToClipboard(cmd, idx)}
+                    className="ml-4 px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition-all duration-200 flex items-center gap-2 text-xs font-sans hover:scale-105"
                   >
-                    {copiedIndex === 0 ? '✓' : 'Copy'}
+                    {copiedIndex === idx ? (
+                      <><Check className="w-4 h-4" /> Copied!</>
+                    ) : (
+                      <><Copy className="w-4 h-4" /> Copy</>
+                    )}
                   </button>
                 </div>
-                <div className="flex justify-between items-start">
-                  <code>source .venv/bin/activate  # macOS / Linux</code>
-                  <button
-                    onClick={() => copyToClipboard('source .venv/bin/activate', 1)}
-                    className="px-3 py-1 bg-background text-foreground text-xs rounded hover:bg-background/80 transition-colors ml-4"
-                  >
-                    {copiedIndex === 1 ? '✓' : 'Copy'}
-                  </button>
-                </div>
-                <div className="flex justify-between items-start">
-                  <code>.venv\Scripts\activate     # Windows (PowerShell)</code>
-                  <button
-                    onClick={() => copyToClipboard('.venv\\Scripts\\activate', 2)}
-                    className="px-3 py-1 bg-background text-foreground text-xs rounded hover:bg-background/80 transition-colors ml-4"
-                  >
-                    {copiedIndex === 2 ? '✓' : 'Copy'}
-                  </button>
-                </div>
-                <div className="flex justify-between items-start">
-                  <code>pip install lazycook</code>
-                  <button
-                    onClick={() => copyToClipboard('pip install lazycook', 3)}
-                    className="px-3 py-1 bg-background text-foreground text-xs rounded hover:bg-background/80 transition-colors ml-4"
-                  >
-                    {copiedIndex === 3 ? '✓' : 'Copy'}
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
           {/* Configure */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
-            <h3 className="text-2xl font-semibold mb-4 text-primary">Configure</h3>
-            <p className="text-foreground mb-4">
+          <div className="group bg-card/50 backdrop-blur-sm p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,61,28,0.15)] animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                <Cog className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-foreground">Configure</h3>
+            </div>
+            <p className="text-lg text-muted-foreground mb-6">
               Set your Gemini API key as an environment variable:
             </p>
             
-            <div className="bg-[#1C1B1B] text-white p-6 rounded-xl font-mono text-sm overflow-x-auto relative">
-              <div className="flex justify-between items-start">
-                <code>export GEMINI_API_KEY="your_api_key_here"</code>
+            <div className="bg-foreground/95 text-background p-6 rounded-2xl font-mono text-sm border-2 border-primary/30 shadow-xl">
+              <div className="flex justify-between items-center bg-background/5 px-4 py-3 rounded-lg hover:bg-background/10 transition-all duration-200">
+                <code className="flex-1">export GEMINI_API_KEY="your_api_key_here"</code>
                 <button
                   onClick={() => copyToClipboard('export GEMINI_API_KEY="your_api_key_here"', 4)}
-                  className="px-3 py-1 bg-background text-foreground text-xs rounded hover:bg-background/80 transition-colors ml-4"
+                  className="ml-4 px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition-all duration-200 flex items-center gap-2 text-xs font-sans hover:scale-105"
                 >
-                  {copiedIndex === 4 ? '✓' : 'Copy'}
+                  {copiedIndex === 4 ? (
+                    <><Check className="w-4 h-4" /> Copied!</>
+                  ) : (
+                    <><Copy className="w-4 h-4" /> Copy</>
+                  )}
                 </button>
               </div>
             </div>
           </div>
 
           {/* Run */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
-            <h3 className="text-2xl font-semibold mb-4 text-primary">Run</h3>
-            <p className="text-foreground mb-4">
-              Start LazyCook in autonomous mode:
+          <div className="group bg-gradient-to-br from-card via-card to-card/50 p-8 rounded-3xl border-2 border-primary/40 hover:border-primary/60 transition-all duration-500 hover:shadow-[0_0_50px_rgba(198,61,28,0.3)] animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 animate-pulse">
+                <Rocket className="w-7 h-7 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-foreground">Run</h3>
+            </div>
+            <p className="text-lg text-muted-foreground mb-6">
+              Start LazyCook in autonomous mode and watch the magic happen:
             </p>
             
-            <div className="bg-[#1C1B1B] text-white p-6 rounded-xl font-mono text-sm overflow-x-auto relative">
-              <div className="flex justify-between items-start">
-                <code>lazycook run --auto</code>
+            <div className="bg-foreground/95 text-background p-6 rounded-2xl font-mono text-sm border-2 border-primary/50 shadow-2xl">
+              <div className="flex justify-between items-center bg-background/5 px-4 py-4 rounded-lg hover:bg-background/10 transition-all duration-200">
+                <code className="flex-1 text-primary text-lg">lazycook run --auto</code>
                 <button
                   onClick={() => copyToClipboard('lazycook run --auto', 5)}
-                  className="px-3 py-1 bg-background text-foreground text-xs rounded hover:bg-background/80 transition-colors ml-4"
+                  className="ml-4 px-5 py-3 bg-primary/30 hover:bg-primary/40 text-primary rounded-lg transition-all duration-200 flex items-center gap-2 text-sm font-sans hover:scale-105 font-bold"
                 >
-                  {copiedIndex === 5 ? '✓' : 'Copy'}
+                  {copiedIndex === 5 ? (
+                    <><Check className="w-5 h-5" /> Copied!</>
+                  ) : (
+                    <><Copy className="w-5 h-5" /> Copy</>
+                  )}
                 </button>
               </div>
             </div>
