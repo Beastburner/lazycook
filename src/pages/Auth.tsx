@@ -27,8 +27,8 @@ export default function Auth() {
           password,
         });
         if (error) throw error;
-        toast({ title: "Login successful!" });
-        navigate("/");
+        toast({ title: "Login successful! Redirecting to downloads..." });
+        navigate("/dashboard");
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -38,7 +38,8 @@ export default function Auth() {
           },
         });
         if (error) throw error;
-        toast({ title: "Sign up successful! Please check your email." });
+        toast({ title: "Sign up successful! Redirecting to downloads..." });
+        navigate("/dashboard");
       }
     } catch (error: any) {
       toast({
@@ -78,7 +79,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
-          redirectTo: `${window.location.origin}/`,
+          redirectTo: `${window.location.origin}/dashboard`,
         },
       });
       if (error) throw error;
@@ -98,7 +99,7 @@ export default function Auth() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: "github",
         options: {
-          redirectTo: `${window.location.origin}/`,
+          redirectTo: `${window.location.origin}/dashboard`,
         },
       });
       if (error) throw error;
