@@ -21,7 +21,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-foreground text-background pt-20 pb-10 overflow-hidden">
+    <footer className="relative bg-foreground text-background pt-16 sm:pt-20 pb-8 sm:pb-10 overflow-hidden">
       {/* Accent Line */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-primary/50 to-primary animate-pulse"></div>
 
@@ -34,22 +34,22 @@ export const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-10 sm:mb-12">
           {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="flex items-center space-x-3 mb-6 group">
+          <div className="sm:col-span-2 md:col-span-2">
+            <div className="flex items-center space-x-3 mb-4 sm:mb-6 group">
               <img 
                 src={logo}
                 alt="LazyCook Logo"
-                className="w-12 h-12 transition-transform duration-300 group-hover:scale-110"
+                className="w-10 h-10 sm:w-12 sm:h-12 transition-transform duration-300 group-hover:scale-110"
               />
-              <span className="text-3xl font-bold">La<span className="text-red-500">z</span>yCook</span>
+              <span className="text-2xl sm:text-3xl font-bold">La<span className="text-red-500">z</span>yCook</span>
             </div>
-            <p className="text-background/70 mb-8 max-w-md text-lg leading-relaxed">
+            <p className="text-background/70 mb-6 sm:mb-8 max-w-md text-base sm:text-lg leading-relaxed">
               Your autonomous AI assistant that delivers maximum results with minimal prompting. 
               Powered by Gemini 2.5 Flash with a four-agent architecture.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4">
               {[
                 { icon: Github, label: "GitHub", href: "#" },
                 { icon: Twitter, label: "Twitter", href: "#" },
@@ -58,10 +58,10 @@ export const Footer = () => {
                 <a
                   key={label}
                   href={href}
-                  className="relative w-12 h-12 rounded-xl bg-background/10 hover:bg-primary flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(198,61,28,0.5)] group"
+                  className="relative w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-background/10 hover:bg-primary flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-[0_0_20px_rgba(198,61,28,0.5)] group"
                   aria-label={label}
                 >
-                  <Icon className="w-6 h-6 transition-transform duration-300 group-hover:scale-110" />
+                  <Icon className="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-300 group-hover:scale-110" />
                   <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
                     {label}
                   </span>
@@ -72,11 +72,11 @@ export const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-[hsl(10,76%,45%)]/80 font-bold italic mb-6 flex items-center gap-2">
+            <h3 className="text-[hsl(10,76%,45%)]/80 font-bold italic mb-4 sm:mb-6 flex items-center gap-2 text-base sm:text-lg">
               Quick Links
-              <div className="h-1 w-8 bg-primary"></div>
+              <div className="h-1 w-6 sm:w-8 bg-primary"></div>
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
                 <li>
     <a
       href="/docs"
@@ -129,16 +129,16 @@ export const Footer = () => {
 
           {/* Community */}
           <div>
-            <h3 className="text-[hsl(10,76%,45%)]/80 font-bold italic mb-6 flex items-center gap-2">
+            <h3 className="text-[hsl(10,76%,45%)]/80 font-bold italic mb-4 sm:mb-6 flex items-center gap-2 text-base sm:text-lg">
               Community
-              <div className="h-1 w-8 bg-primary"></div>
+              <div className="h-1 w-6 sm:w-8 bg-primary"></div>
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-2 sm:space-y-3">
               {['GitHub', 'Discord', 'Twitter', 'Blog'].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
+                    className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group text-sm sm:text-base"
                   >
                     <span className="relative">
                       {item}
@@ -152,8 +152,8 @@ export const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-       <div className="pt-10 border-t border-background/20 flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
-  <p className="text-sm leading-relaxed animate-fade-in">
+       <div className="pt-8 sm:pt-10 border-t border-background/20 flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-4 md:space-y-0">
+  <p className="text-xs sm:text-sm leading-relaxed animate-fade-in px-2">
     © {new Date().getFullYear()}{" "}
     <span className="font-semibold text-gradient">LazyCook</span> v5.0 —{" "}
     <span className="text-[hsla(0, 0%, 100%, 1.00)]/80 font-medium italic">
@@ -168,7 +168,7 @@ export const Footer = () => {
       Presented by <span className="text-[hsl(10,76%,45%)]/80 font-medium italic">ALPHA.KORE</span>
     </span>.
   </p>
-          <div className="flex space-x-6 text-sm">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 text-xs sm:text-sm">
             {['Privacy Policy', 'Terms of Service', 'License'].map((item) => (
               <a
                 key={item}
@@ -185,7 +185,7 @@ export const Footer = () => {
         </div>
 
         {/* Watermark */}
-        <div className="mt-8 text-center">
+        <div className="mt-6 sm:mt-8 text-center">
           <p className="text-background/40 text-xs font-mono">
             Built with ❤️ • Python 3.10+ • Gemini 2.5 Flash
           </p>
@@ -196,10 +196,10 @@ export const Footer = () => {
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-14 h-14 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-2xl hover:shadow-[0_0_30px_rgba(198,61,28,0.6)] transition-all duration-300 z-50 p-0 hover:scale-110 group"
+          className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-primary hover:bg-primary/90 text-primary-foreground shadow-2xl hover:shadow-[0_0_30px_rgba(198,61,28,0.6)] transition-all duration-300 z-50 p-0 hover:scale-110 group"
           aria-label="Scroll to top"
         >
-          <ArrowUp className="w-7 h-7 group-hover:animate-bounce" />
+          <ArrowUp className="w-6 h-6 sm:w-7 sm:h-7 group-hover:animate-bounce" />
         </Button>
       )}
     </footer>

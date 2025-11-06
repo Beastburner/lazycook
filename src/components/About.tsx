@@ -3,7 +3,7 @@ import { Sparkles, Zap, Database, FileText } from "lucide-react";
 
 export const About = () => {
   return (
-    <section id="about" className="py-24 bg-foreground/[0.02] relative overflow-hidden">
+    <section id="about" className="py-16 sm:py-20 md:py-24 bg-foreground/[0.02] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -14,11 +14,11 @@ export const About = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20 animate-fade-in-up">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 animate-fade-in-up">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground">
             About <span>La<span className="text-red-500">z</span>yCook</span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-2">
             An <strong className="text-primary">autonomous multi-agent AI assistant</strong> that runs in your terminal. 
             Using <strong className="text-primary">Gemini 2.5 Flash</strong> with a <strong className="text-primary">four-agent architecture</strong> 
             for maximum output with minimal prompting.
@@ -26,33 +26,33 @@ export const About = () => {
         </div>
 
         {/* Terminal Demo */}
-        <div className="mb-20 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+        <div className="mb-12 sm:mb-16 md:mb-20 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <TerminalDemo />
         </div>
 
         {/* Version & Architecture Overview */}
-        <div className="max-w-6xl mx-auto mb-16 bg-gradient-to-br from-card via-card to-card/50 border-2 border-primary/20 rounded-3xl p-8 md:p-12 shadow-2xl hover:shadow-[0_0_50px_rgba(198,61,28,0.3)] transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          <div className="grid md:grid-cols-3 gap-8 mb-10">
+        <div className="max-w-6xl mx-auto mb-12 sm:mb-16 bg-gradient-to-br from-card via-card to-card/50 border-2 border-primary/20 rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl hover:shadow-[0_0_50px_rgba(198,61,28,0.3)] transition-all duration-500 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-10">
             <div className="text-center group">
-              <div className="text-5xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">v1.0.2</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider">Current Version</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">v1.0.2</div>
+              <div className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider">Current Version</div>
             </div>
             <div className="text-center group">
-              <div className="text-5xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">Python</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider">3.10+ Required</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">Python</div>
+              <div className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider">3.10+ Required</div>
             </div>
             <div className="text-center group">
-              <div className="text-5xl font-bold text-primary mb-3 group-hover:scale-110 transition-transform duration-300">4 Agents</div>
-              <div className="text-sm text-muted-foreground uppercase tracking-wider">Multi-Agent System</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">4 Agents</div>
+              <div className="text-xs sm:text-sm text-muted-foreground uppercase tracking-wider">Multi-Agent System</div>
             </div>
           </div>
           
-          <div className="border-t-2 border-primary/20 pt-8">
-            <h3 className="text-2xl font-semibold mb-4 text-foreground flex items-center gap-3">
-              <Sparkles className="w-6 h-6 text-primary" />
+          <div className="border-t-2 border-primary/20 pt-6 sm:pt-8">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground flex items-center gap-2 sm:gap-3">
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
               System Architecture
             </h3>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               La<span className="text-red-500">z</span>yCook employs a sophisticated four-agent architecture where each agent plays a specialized role:
               <strong className="text-foreground"> Generator</strong> creates initial solutions, 
               <strong className="text-foreground"> Analyzer</strong> evaluates quality, 
@@ -64,7 +64,7 @@ export const About = () => {
         </div>
 
         {/* Goals Grid with Glassmorphism */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
           {[
             { 
               icon: Zap, 
@@ -95,15 +95,15 @@ export const About = () => {
             return (
               <div 
                 key={index}
-                className="group bg-card/80 backdrop-blur-sm border-2 border-primary/20 rounded-2xl p-8 hover:shadow-[0_0_30px_rgba(198,61,28,0.2)] hover:border-primary/60 transition-all duration-500 hover:-translate-y-2 cursor-pointer animate-fade-in-up"
+                className="group bg-card/80 backdrop-blur-sm border-2 border-primary/20 rounded-2xl p-6 sm:p-8 hover:shadow-[0_0_30px_rgba(198,61,28,0.2)] hover:border-primary/60 transition-all duration-500 hover:-translate-y-2 cursor-pointer animate-fade-in-up"
                 style={{ animationDelay: `${0.4 + index * 0.1}s` }}
               >
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
-                    <IconComponent className={`w-8 h-8 ${goal.color}`} />
+                <div className="mb-4 sm:mb-6">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${goal.color}`} />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-foreground group-hover:text-primary transition-colors duration-300">{goal.title}</h3>
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors duration-300">{goal.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{goal.description}</p>
               </div>
             );

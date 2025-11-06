@@ -16,23 +16,23 @@ export const Documentation = () => {
   ];
 
   return (
-    <section id="documentation" className="py-20 bg-background">
+    <section id="documentation" className="py-16 sm:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-foreground text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-16 text-foreground text-center px-2">
           La<span className="text-red-500">z</span>yCook — Documentation (v1.0.2)
         </h2>
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-[300px_1fr] gap-8">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-[280px_1fr] gap-6 sm:gap-8">
           {/* Sidebar */}
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-border h-fit lg:sticky lg:top-24">
-            <h3 className="font-semibold mb-4 text-foreground">On this page</h3>
-            <div className="border-t border-border pt-4">
-              <nav className="space-y-2">
+          <div className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm border border-border h-fit lg:sticky lg:top-24 overflow-x-auto">
+            <h3 className="font-semibold mb-3 sm:mb-4 text-foreground text-sm sm:text-base">On this page</h3>
+            <div className="border-t border-border pt-3 sm:pt-4">
+              <nav className="space-y-1 sm:space-y-2">
                 {sections.map((section) => (
                   <button
                     key={section.id}
                     onClick={() => setActiveSection(section.id)}
-                    className={`block w-full text-left px-3 py-2 rounded-lg transition-colors ${
+                    className={`block w-full text-left px-2 sm:px-3 py-1.5 sm:py-2 rounded-lg transition-colors text-sm sm:text-base ${
                       activeSection === section.id
                         ? "bg-primary/10 text-primary font-medium"
                         : "text-muted-foreground hover:text-foreground hover:bg-muted"
@@ -46,11 +46,11 @@ export const Documentation = () => {
           </div>
 
           {/* Content */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border">
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-border overflow-x-auto">
             {activeSection === "overview" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">Overview</h3>
-                <p className="text-foreground mb-4 leading-relaxed">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-primary">Overview</h3>
+                <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">
                   LazyCook is an autonomous multi-agent conversational assistant (version <strong>5.0</strong>) authored by
                   Harsh Bhatt. It targets Python 3.10+ and provides an end-to-end assistant that processes
                   user queries, manages documents, stores conversations, and performs iterative AI reasoning
@@ -61,42 +61,42 @@ export const Documentation = () => {
 
             {activeSection === "features" && (
               <div>
-                <h3 className="text-3xl font-bold mb-6 text-primary">⚙️ Core Features</h3>
-                <div className="space-y-6">
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-foreground mb-2">Multi-Agent AI System</h4>
-                    <p className="text-sm text-muted-foreground">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-primary">⚙️ Core Features</h3>
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="border-l-4 border-primary pl-3 sm:pl-4">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Multi-Agent AI System</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Composed of four specialized agents — Generator, Analyzer, Optimizer, Validator — to ensure high-quality responses.
                     </p>
                   </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-foreground mb-2">Smart Context Management</h4>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="border-l-4 border-primary pl-3 sm:pl-4">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Smart Context Management</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Dynamically constructs contextual conversation history from both current and previous sessions.
                     </p>
                   </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-foreground mb-2">Document Handling</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Upload, extract, and analyze <code className="bg-muted px-2 py-0.5 rounded">.txt</code>, <code className="bg-muted px-2 py-0.5 rounded">.pdf</code>, <code className="bg-muted px-2 py-0.5 rounded">.md</code>, <code className="bg-muted px-2 py-0.5 rounded">.csv</code> documents with automatic hashing and metadata tracking.
+                  <div className="border-l-4 border-primary pl-3 sm:pl-4">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Document Handling</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      Upload, extract, and analyze <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.txt</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.pdf</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.md</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.csv</code> documents with automatic hashing and metadata tracking.
                     </p>
                   </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-foreground mb-2">Quality Evaluation System</h4>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="border-l-4 border-primary pl-3 sm:pl-4">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Quality Evaluation System</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Objective & subjective scoring based on accuracy, completeness, structure, and polish.
                     </p>
                   </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-foreground mb-2">Task Scheduling</h4>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="border-l-4 border-primary pl-3 sm:pl-4">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Task Scheduling</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
                       Automatically creates and tracks tasks related to conversation insights.
                     </p>
                   </div>
-                  <div className="border-l-4 border-primary pl-4">
-                    <h4 className="font-semibold text-foreground mb-2">Export System</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Export past conversations to <code className="bg-muted px-2 py-0.5 rounded">.txt</code>, <code className="bg-muted px-2 py-0.5 rounded">.md</code>, or <code className="bg-muted px-2 py-0.5 rounded">.json</code> files.
+                  <div className="border-l-4 border-primary pl-3 sm:pl-4">
+                    <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Export System</h4>
+                    <p className="text-xs sm:text-sm text-muted-foreground">
+                      Export past conversations to <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.txt</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.md</code>, or <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.json</code> files.
                     </p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">

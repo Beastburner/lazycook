@@ -37,18 +37,18 @@ export const VideoSection = () => {
   ];
 
   return (
-    <section id="videos" className="py-20 bg-background">
+    <section id="videos" className="py-16 sm:py-20 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
+        <div className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 text-gradient">
             Watch & Learn
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
             Quick tutorials to master LazyCook in minutes
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {videos.map((video, index) => (
             <div
               key={video.id}
@@ -81,11 +81,11 @@ export const VideoSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6 bg-card border border-border/50">
-                  <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
+                <div className="p-4 sm:p-6 bg-card border border-border/50">
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2 group-hover:text-primary transition-colors">
                     {video.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-xs sm:text-sm">
                     {video.description}
                   </p>
                 </div>
@@ -95,8 +95,8 @@ export const VideoSection = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
-          <p className="text-muted-foreground mb-4">Want to see more?</p>
+        <div className="text-center mt-12 sm:mt-16">
+          <p className="text-muted-foreground mb-3 sm:mb-4 text-sm sm:text-base">Want to see more?</p>
           <a
             href="#"
             className="inline-flex items-center text-primary font-semibold hover:underline"

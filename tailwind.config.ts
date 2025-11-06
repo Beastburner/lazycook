@@ -60,9 +60,20 @@ export default {
         },
       },
       fontFamily: {
-    heading: ["'DM Sans'", "sans-serif"],  // or "Outfit"
-    sans: ["'Inter'", "system-ui", "sans-serif"],
-  },
+        heading: ["'Inter var'", "Inter", "system-ui", "sans-serif"],
+        sans: ["'Inter var'", "Inter", "system-ui", "sans-serif"],
+        mono: [
+          "'JetBrains Mono Variable'",
+          "'JetBrains Mono'",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Consolas",
+          "'Liberation Mono'",
+          "'Courier New'",
+          "monospace",
+        ],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
