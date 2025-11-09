@@ -2,11 +2,14 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { auth, googleProvider } from "@/lib/firebase";
+import { auth, googleProvider, githubProvider } from "@/lib/firebase";
 import { 
   signInWithPopup, 
   signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword 
+  createUserWithEmailAndPassword,
+  RecaptchaVerifier,
+  signInWithPhoneNumber,
+  ConfirmationResult
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -17,7 +20,10 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [otp, setOtp] = useState("");
   const [isPhoneAuth, setIsPhoneAuth] = useState(false);
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [confirmationResult, setConfirmationResult] = useState<ConfirmationResult | null>(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -49,10 +55,35 @@ export default function Auth() {
 
   const handlePhoneAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Coming Soon",
-      description: "Phone authentication will be available soon!",
-    });
+    setLoading(true);
+
+    try {
+      if (!showOtpInput) {
+        // Send OTP
+        const recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+          size: 'invisible'
+        });
+        const confirmation = await signInWithPhoneNumber(auth, phone, recaptchaVerifier);
+        setConfirmationResult(confirmation);
+        setShowOtpInput(true);
+        toast({ title: "OTP sent to your phone!" });
+      } else {
+        // Verify OTP
+        if (confirmationResult) {
+          await confirmationResult.confirm(otp);
+          toast({ title: "Login successful! Redirecting to downloads..." });
+          navigate("/dashboard");
+        }
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleAuth = async () => {
@@ -72,10 +103,19 @@ export default function Auth() {
   };
 
   const handleGithubAuth = async () => {
-    toast({
-      title: "Coming Soon",
-      description: "GitHub authentication will be available soon!",
-    });
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, githubProvider);
+      toast({ title: "Login successful! Redirecting to downloads..." });
+      navigate("/dashboard");
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message,
+        variant: "destructive",
+      });
+      setLoading(false);
+    }
   };
 
   return (
@@ -193,10 +233,26 @@ export default function Auth() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   required
+                  disabled={showOtpInput}
                 />
               </div>
+              {showOtpInput && (
+                <div className="space-y-2">
+                  <Label htmlFor="otp">Enter OTP</Label>
+                  <Input
+                    id="otp"
+                    type="text"
+                    placeholder="123456"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    required
+                    maxLength={6}
+                  />
+                </div>
+              )}
+              <div id="recaptcha-container"></div>
               <Button type="submit" className="w-full" disabled={loading}>
-                {loading ? "Loading..." : "Send OTP"}
+                {loading ? "Loading..." : showOtpInput ? "Verify OTP" : "Send OTP"}
               </Button>
             </form>
           )}
