@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { auth } from "@/lib/firebase";
+import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { Button } from "@/components/ui/button";
 import { Download, LogOut, Package, Home } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import type { User } from "@supabase/supabase-js";
 import logo from "@/assets/logo.png";
 import logoText from "@/assets/logo-text.png";
 import installationPDF from "@/assets/InstallationGuide.pdf";
@@ -16,32 +16,21 @@ export default function Dashboard() {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check session on load
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session?.user) {
-        setUser(session.user);
+    // Auth listener
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        setUser(currentUser);
       } else {
         navigate("/auth");
       }
       setLoading(false);
     });
 
-    // Auth listener
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (session?.user) {
-          setUser(session.user);
-        } else {
-          navigate("/auth");
-        }
-      }
-    );
-
-    return () => subscription.unsubscribe();
+    return () => unsubscribe();
   }, [navigate]);
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await signOut(auth);
     toast({ title: "Logged out successfully" });
     navigate("/");
   };
@@ -108,7 +97,7 @@ export default function Dashboard() {
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold mb-4 text-foreground">
               Welcome, <span className="text-primary">
-                {user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split("@")[0]}
+                {user?.displayName || user?.email?.split("@")[0]}
               </span> 👋
             </h2>
             <p className="text-muted-foreground text-lg">

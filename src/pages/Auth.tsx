@@ -2,7 +2,12 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { supabase } from "@/integrations/supabase/client";
+import { auth, googleProvider } from "@/lib/firebase";
+import { 
+  signInWithPopup, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword 
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/logo.png";
@@ -23,22 +28,11 @@ export default function Auth() {
 
     try {
       if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        if (error) throw error;
+        await signInWithEmailAndPassword(auth, email, password);
         toast({ title: "Login successful! Redirecting to downloads..." });
         navigate("/dashboard");
       } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: `${window.location.origin}/`,
-          },
-        });
-        if (error) throw error;
+        await createUserWithEmailAndPassword(auth, email, password);
         toast({ title: "Sign up successful! Redirecting to downloads..." });
         navigate("/dashboard");
       }
@@ -55,35 +49,18 @@ export default function Auth() {
 
   const handlePhoneAuth = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-
-    try {
-      const { error } = await supabase.auth.signInWithOtp({
-        phone,
-      });
-      if (error) throw error;
-      toast({ title: "OTP sent to your phone!" });
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
+    toast({
+      title: "Coming Soon",
+      description: "Phone authentication will be available soon!",
+    });
   };
 
   const handleGoogleAuth = async () => {
     setLoading(true);
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: `${window.location.origin}/dashboard`,
-        },
-      });
-      if (error) throw error;
+      await signInWithPopup(auth, googleProvider);
+      toast({ title: "Login successful! Redirecting to downloads..." });
+      navigate("/dashboard");
     } catch (error: any) {
       toast({
         title: "Error",
@@ -95,23 +72,10 @@ export default function Auth() {
   };
 
   const handleGithubAuth = async () => {
-    setLoading(true);
-    try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "github",
-        options: {
-          redirectTo: `${window.location.origin}/dashboard`,
-        },
-      });
-      if (error) throw error;
-    } catch (error: any) {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
-      setLoading(false);
-    }
+    toast({
+      title: "Coming Soon",
+      description: "GitHub authentication will be available soon!",
+    });
   };
 
   return (
