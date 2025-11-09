@@ -146,7 +146,7 @@ export const Footer = () => {
             </h3>
             <ul className="space-y-2 sm:space-y-3">
               {[
-                { name: 'GitHub', href: 'https://github.com/lazycook' },
+                { name: 'Instagram', href: 'https://www.instagram.com/lazycook.ai?igsh=MXF6azVwMDlwZ2xoNg==' },
                 { name: 'Discord', href: 'https://discord.gg/lazycook' },
                 { name: 'Twitter', href: 'https://twitter.com/lazycook' },
                 { name: 'Blog', href: 'https://medium.com/tag/multi-agent-systems' }
