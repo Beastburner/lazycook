@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import demo1 from "@/assets/demo1.mp4";
 import demo2 from "@/assets/demo2.mp4";
 import heroBg from "@/assets/hero-bg.jpg";
+import logo from "@/assets/logo.png";
 
 export const Demos = () => {
   // Simple overlay state so the poster shows a macOS-like overlay until play
@@ -79,23 +80,22 @@ export const Demos = () => {
                   onClick={playVideo1}
                   className="absolute inset-0 z-20 flex flex-col justify-between pointer-events-auto"
                 >
-                  {/* Top gradient */}
-                  <div className="h-16 sm:h-20 w-full bg-gradient-to-b from-black/40 to-transparent" />
-                  {/* Center play button */}
-                  <div className="flex-1 flex items-center justify-center">
+                  {/* Glowing Logo Cover */}
+                  <div className="absolute inset-0 bg-black flex items-center justify-center">
+                    <img 
+                      src={logo}
+                      alt="LazyCook"
+                      className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 animate-pulse-glow"
+                      style={{
+                        filter: "drop-shadow(0 0 30px rgba(198,61,28,0.9)) drop-shadow(0 0 60px rgba(198,61,28,0.6))"
+                      }}
+                    />
+                  </div>
+                  {/* Center play button on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/30">
                     <span className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-white transition-transform duration-200 active:scale-95">
                       <Play className="w-8 h-8 sm:w-10 sm:h-10 translate-x-0.5" fill="currentColor" />
                     </span>
-                  </div>
-                  {/* Bottom faux control bar */}
-                  <div className="px-5 sm:px-8 pb-4 sm:pb-6 w-full">
-                    <div className="mx-auto w-10/12 sm:w-3/4 h-9 rounded-xl bg-black/35 border border-white/10 backdrop-blur-md flex items-center gap-3 px-4">
-                      <div className="w-0 h-0 border-y-6 border-y-transparent border-l-[12px] border-l-white/90 opacity-90" />
-                      <div className="flex-1 h-1.5 rounded-full bg-white/25">
-                        <div className="h-1.5 w-1/4 bg-white rounded-full" />
-                      </div>
-                      <div className="w-8 h-2 rounded-full bg-white/30" />
-                    </div>
                   </div>
                 </button>
               )}
@@ -154,23 +154,22 @@ export const Demos = () => {
                   onClick={playVideo2}
                   className="absolute inset-0 z-20 flex flex-col justify-between pointer-events-auto"
                 >
-                  {/* Top gradient */}
-                  <div className="h-16 sm:h-20 w-full bg-gradient-to-b from-black/40 to-transparent" />
-                  {/* Center play button */}
-                  <div className="flex-1 flex items-center justify-center">
+                  {/* Glowing Logo Cover */}
+                  <div className="absolute inset-0 bg-black flex items-center justify-center">
+                    <img 
+                      src={logo}
+                      alt="LazyCook"
+                      className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 animate-pulse-glow"
+                      style={{
+                        filter: "drop-shadow(0 0 30px rgba(198,61,28,0.9)) drop-shadow(0 0 60px rgba(198,61,28,0.6))"
+                      }}
+                    />
+                  </div>
+                  {/* Center play button on hover */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black/30">
                     <span className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-black/40 border border-white/20 backdrop-blur-md text-white transition-transform duration-200 active:scale-95">
                       <Play className="w-8 h-8 sm:w-10 sm:h-10 translate-x-0.5" fill="currentColor" />
                     </span>
-                  </div>
-                  {/* Bottom faux control bar */}
-                  <div className="px-5 sm:px-8 pb-4 sm:pb-6 w-full">
-                    <div className="mx-auto w-10/12 sm:w-3/4 h-9 rounded-xl bg-black/35 border border-white/10 backdrop-blur-md flex items-center gap-3 px-4">
-                      <div className="w-0 h-0 border-y-6 border-y-transparent border-l-[12px] border-l-white/90 opacity-90" />
-                      <div className="flex-1 h-1.5 rounded-full bg-white/25">
-                        <div className="h-1.5 w-1/4 bg-white rounded-full" />
-                      </div>
-                      <div className="w-8 h-2 rounded-full bg-white/30" />
-                    </div>
                   </div>
                 </button>
               )}

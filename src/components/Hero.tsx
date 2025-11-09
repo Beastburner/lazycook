@@ -165,7 +165,7 @@ export const Hero = () => {
               className="relative border-2 border-black/50 text-primary/70 bg-transparent hover:bg-primary/10 px-6 sm:px-10 py-5 sm:py-7 text-base sm:text-lg rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(198,61,28,0.2)] group w-full sm:w-auto pointer-events-none cursor-not-allowed"
             >
               <span className="relative z-10 flex flex-col items-center text-center">
-                <span>Download Package</span>
+                <span>Download </span>
                 <span className="text-xs sm:text-sm text-foreground/70">
                   <span className="text-black font-black">Upcoming</span>
                   <span> – no footprint with us</span>

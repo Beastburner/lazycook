@@ -21,7 +21,7 @@ export const About = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-2">
             An <strong className="text-primary">autonomous multi-agent AI assistant</strong> that runs in your terminal. 
             Using <strong className="text-primary">Gemini 2.5 Flash</strong> with a <strong className="text-primary">four-agent architecture</strong> 
-            for maximum output with minimal prompting.
+            for maximum output with minimum human intervention.
           </p>
         </div>
 

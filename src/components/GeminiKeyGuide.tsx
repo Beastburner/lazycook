@@ -34,7 +34,7 @@ export const GeminiKeyGuide = () => {
     {
       title: "Set Up Environment Variable",
       description: "Add your API key to your environment configuration",
-      code: "GEMINI_API_KEY=your_api_key_here"
+      code: "python lazycook --api_key \"YOUR_GEMINI_KEY\" --limit 90"
     }
   ];
 

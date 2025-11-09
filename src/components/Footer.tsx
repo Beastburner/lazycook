@@ -20,6 +20,11 @@ export const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <footer className="relative bg-foreground text-background pt-16 sm:pt-20 pb-8 sm:pb-10 overflow-hidden">
       {/* Accent Line */}
@@ -53,7 +58,7 @@ export const Footer = () => {
               {[
                 { icon: Github, label: "GitHub", href: "#" },
                 { icon: Twitter, label: "Twitter", href: "#" },
-                { icon: Mail, label: "Email", href: "#" }
+                { icon: Mail, label: "Email", href: "lazycook10@gmail.com" }
               ].map(({ icon: Icon, label, href }) => (
                 <a
                   key={label}
@@ -79,7 +84,9 @@ export const Footer = () => {
             <ul className="space-y-2 sm:space-y-3">
                 <li>
     <a
-      href="/docs"
+      href="https://pypi.org/project/lazycook/"
+      target="_blank"
+      rel="noopener noreferrer"
       className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
     >
       <span className="relative">
@@ -91,7 +98,9 @@ export const Footer = () => {
 
   <li>
     <a
-      href="/api"
+      href="https://ai.google.dev/gemini-api/docs"
+      target="_blank"
+      rel="noopener noreferrer"
       className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
     >
       <span className="relative">
@@ -103,7 +112,7 @@ export const Footer = () => {
 
   <li>
     <a
-      href="/examples"
+      href="https://www.ibm.com/think/topics/multiagent-system"
       className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
     >
       <span className="relative">
@@ -115,7 +124,9 @@ export const Footer = () => {
 
   <li>
     <a
-      href="/changelog"
+      href="https://pypi.org/project/lazycook/#history"
+      target="_blank"
+      rel="noopener noreferrer"
       className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group"
     >
       <span className="relative">
@@ -134,14 +145,21 @@ export const Footer = () => {
               <div className="h-1 w-6 sm:w-8 bg-primary"></div>
             </h3>
             <ul className="space-y-2 sm:space-y-3">
-              {['GitHub', 'Discord', 'Twitter', 'Blog'].map((item) => (
-                <li key={item}>
+              {[
+                { name: 'GitHub', href: 'https://github.com/lazycook' },
+                { name: 'Discord', href: 'https://discord.gg/lazycook' },
+                { name: 'Twitter', href: 'https://twitter.com/lazycook' },
+                { name: 'Blog', href: 'https://medium.com/tag/multi-agent-systems' }
+              ].map(({ name, href }) => (
+                <li key={name}>
                   <a
-                    href="#"
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-background/70 hover:text-primary transition-all duration-300 relative inline-block group text-sm sm:text-base"
                   >
                     <span className="relative">
-                      {item}
+                      {name}
                       <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"></span>
                     </span>
                   </a>

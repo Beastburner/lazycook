@@ -62,10 +62,9 @@ export const GettingStarted = () => {
             
             <div className="bg-foreground/95 text-background p-4 sm:p-6 rounded-2xl font-mono text-xs sm:text-sm space-y-3 sm:space-y-4 border-2 border-primary/30 shadow-xl overflow-x-auto">
               {[
-                { cmd: "python -m venv .venv", idx: 0 },
-                { cmd: "source .venv/bin/activate  # macOS / Linux", idx: 1 },
-                { cmd: ".venv\\Scripts\\activate     # Windows", idx: 2 },
-                { cmd: "pip install lazycook", idx: 3 }
+                { cmd: "pip install lazycook", idx: 0 },
+                { cmd: "python -m pip install lazycook", idx: 1 }
+                
               ].map(({ cmd, idx }) => (
                 <div key={idx} className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-2 sm:py-3 rounded-lg hover:bg-background/10 transition-all duration-200 group/cmd gap-2">
                   <code className="flex-1 break-all sm:break-normal">{cmd}</code>
@@ -90,7 +89,7 @@ export const GettingStarted = () => {
               <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
                 <Cog className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Configure</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Configure through Terminal</h3>
             </div>
             <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
               Set your Gemini API key as an environment variable:
@@ -98,9 +97,9 @@ export const GettingStarted = () => {
             
             <div className="bg-foreground/95 text-background p-4 sm:p-6 rounded-2xl font-mono text-xs sm:text-sm border-2 border-primary/30 shadow-xl overflow-x-auto">
               <div className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-2 sm:py-3 rounded-lg hover:bg-background/10 transition-all duration-200 gap-2">
-                <code className="flex-1 break-all sm:break-normal">export GEMINI_API_KEY="your_api_key_here"</code>
+                <code className="flex-1 break-all sm:break-normal">python lazycook --api_key "YOUR_GEMINI_KEY"--limit 90</code>
                 <button
-                  onClick={() => copyToClipboard('export GEMINI_API_KEY="your_api_key_here"', 4)}
+                  onClick={() => copyToClipboard('python lazycook --api_key \"YOUR_GEMINI_KEY\" --limit 90"', 4)}
                   className="ml-2 sm:ml-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs font-sans hover:scale-105 flex-shrink-0"
                 >
                   {copiedIndex === 4 ? (
@@ -119,7 +118,7 @@ export const GettingStarted = () => {
               <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary/20 rounded-2xl flex items-center justify-center group-hover:bg-primary/30 group-hover:scale-110 transition-all duration-300 animate-pulse">
                 <Rocket className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Run</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Run (name of the file u saved as)</h3>
             </div>
             <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
               Start LazyCook in autonomous mode and watch the magic happen:
@@ -127,9 +126,9 @@ export const GettingStarted = () => {
             
             <div className="bg-foreground/95 text-background p-4 sm:p-6 rounded-2xl font-mono text-xs sm:text-sm border-2 border-primary/50 shadow-2xl overflow-x-auto">
               <div className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-3 sm:py-4 rounded-lg hover:bg-background/10 transition-all duration-200 gap-2">
-                <code className="flex-1 text-primary text-base sm:text-lg break-all sm:break-normal">pip install lazycook</code>
+                <code className="flex-1 text-primary text-base sm:text-lg break-all sm:break-normal">python test.py</code>
                 <button
-                  onClick={() => copyToClipboard('lazycook run --auto', 5)}
+                  onClick={() => copyToClipboard('python test.py', 5)}
                   className="ml-2 sm:ml-4 px-3 sm:px-5 py-2 sm:py-3 bg-primary/30 hover:bg-primary/40 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-sans hover:scale-105 font-bold flex-shrink-0"
                 >
                   {copiedIndex === 5 ? (

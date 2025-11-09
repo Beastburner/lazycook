@@ -279,21 +279,13 @@ export const Documentation = () => {
               <div>
                 <h3 className="text-3xl font-bold mb-6 text-primary">🚀 Example Usage</h3>
                 <div className="bg-[#1C1B1B] text-white p-6 rounded-xl overflow-x-auto">
-                  <pre className="font-mono text-sm whitespace-pre">{`from LazyCook5_withJSON import AutonomousMultiAgentAssistant
+                  <pre className="font-mono text-sm whitespace-pre">{`import lazycook
 import asyncio
 
-assistant = AutonomousMultiAgentAssistant(
-    gemini_api_key="YOUR_API_KEY_HERE"
-)
+config = lazycook.create_assistant("your-api-key", conversation_limit=90)
 
-async def run():
-    response = await assistant.process_user_message(
-        user_id="user123",
-        message="Explain binary search in Python with example."
-    )
-    print(response)
-
-asyncio.run(run())`}</pre>
+# Run CLI
+asyncio.run(config.run_cli())`}</pre>
                 </div>
               </div>
             )}
