@@ -107,7 +107,9 @@ export default function Dashboard() {
           {/* Welcome Section */}
           <div className="mb-12 text-center">
             <h2 className="text-3xl font-bold mb-4 text-foreground">
-              Welcome, <span className="text-primary">{user?.email?.split("@")[0]}</span> 👋
+              Welcome, <span className="text-primary">
+                {user?.user_metadata?.full_name || user?.user_metadata?.name || user?.email?.split("@")[0]}
+              </span> 👋
             </h2>
             <p className="text-muted-foreground text-lg">
               Download your package and start cooking up AI-powered solutions.
