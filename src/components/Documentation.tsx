@@ -51,8 +51,8 @@ export const Documentation = () => {
               <div>
                 <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-primary">Overview</h3>
                 <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">
-                  LazyCook is an autonomous multi-agent conversational assistant (version <strong>5.0</strong>) authored by
-                  Harsh Bhatt. It targets Python 3.10+ and provides an end-to-end assistant that processes
+                  LazyCook is an autonomous multi-agent conversational assistant (version <strong>v1.0.2</strong>) authored by
+                  Hitarth Trivedi & Harsh Bhatt . It targets Python 3.10+ and provides an end-to-end assistant that processes
                   user queries, manages documents, stores conversations, and performs iterative AI reasoning
                   loops using the Gemini 2.5 Flash model in a four-agent architecture.
                 </p>
