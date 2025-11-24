@@ -162,7 +162,7 @@ export default function Dashboard() {
                   <Package className="w-6 h-6 text-primary/70" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">La<span style={{color:'red'}}>z</span>yCook Package</h3>
+                  <h3 className="font-semibold text-foreground">Get Your Own La<span style={{color:'red'}}>z</span>yCook </h3>
                   <p className="text-sm text-muted-foreground">Upcoming Release</p>
                 </div>
               </div>
