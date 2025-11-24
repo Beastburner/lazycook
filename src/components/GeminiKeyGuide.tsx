@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Copy, Check, ExternalLink, Key, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { copyToClipboard } from '@/lib/utils';
 
 export const GeminiKeyGuide = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const copyToClipboard = (text: string, index: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
+  const copyToClipboardHandler = (text: string, index: number) => {
+    copyToClipboard(text).then((ok) => {
+      if (ok) {
+        setCopiedIndex(index);
+        setTimeout(() => setCopiedIndex(null), 2000);
+      }
+    });
   };
 
   const steps = [
@@ -135,7 +139,7 @@ export const GeminiKeyGuide = () => {
                               size="sm"
                               variant="ghost"
                               className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 md:top-3 md:right-3 bg-primary/20 hover:bg-primary/30 text-primary hover:scale-105 transition-all duration-200 text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 min-w-[60px] sm:min-w-[80px]"
-                              onClick={() => copyToClipboard(step.code!, index)}
+                              onClick={() => copyToClipboardHandler(step.code!, index)}
                             >
                               {copiedIndex === index ? (
                                 <>

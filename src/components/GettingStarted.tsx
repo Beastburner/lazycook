@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { Copy, Check, Terminal, Box, Cog, Rocket } from "lucide-react";
+import { copyToClipboard } from '@/lib/utils';
 
 export const GettingStarted = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const copyToClipboard = (text: string, index: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
+  const copyToClipboardHandler = (text: string, index: number) => {
+    copyToClipboard(text).then((ok) => {
+      if (ok) {
+        setCopiedIndex(index);
+        setTimeout(() => setCopiedIndex(null), 2000);
+      }
+    });
   };
 
   return (
@@ -48,6 +52,8 @@ export const GettingStarted = () => {
             </ul>
           </div>
 
+          
+
           {/* Install */}
           <div className="group bg-card/50 backdrop-blur-sm p-6 sm:p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,61,28,0.15)] animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -73,7 +79,7 @@ export const GettingStarted = () => {
                       : char
                   ))}</code>
                   <button
-                    onClick={() => copyToClipboard(cmd, idx)}
+                    onClick={() => copyToClipboardHandler(cmd, idx)}
                     className="ml-2 sm:ml-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs font-sans hover:scale-105 flex-shrink-0"
                   >
                     {copiedIndex === idx ? (
@@ -84,6 +90,35 @@ export const GettingStarted = () => {
                   </button>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Create & Run Python File (moved after Install) */}
+          <div className="group bg-card/60 backdrop-blur-sm p-6 sm:p-8 rounded-3xl border-2 border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-[0_0_40px_rgba(198,61,28,0.15)] animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
+            <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:bg-primary/20 transition-all duration-300">
+                <Terminal className="w-6 h-6 sm:w-7 sm:h-7 text-primary" />
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Create & Run a Python File</h3>
+            </div>
+            <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6">
+              After installing the package, create a Python file (for example `test.py`) and add the following code. Replace <code>"your-api-key"</code> with your Gemini API key, then run the file to chat with LazyCook.
+            </p>
+
+            <div className="bg-foreground/95 text-background p-4 sm:p-6 rounded-2xl font-mono text-xs sm:text-sm border-2 border-primary/50 shadow-2xl overflow-x-auto">
+              <div className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-3 sm:py-4 rounded-lg hover:bg-background/10 transition-all duration-200 gap-2">
+                <pre className="flex-1 font-mono text-sm whitespace-pre break-words">{'import lazycook\nimport asyncio\n\nconfig = lazycook.create_assistant("your-api-key", conversation_limit=90)\n\n# Run CLI\nasyncio.run(config.run_cli())'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</pre>
+                <button
+                  onClick={() => copyToClipboardHandler('import lazycook\nimport asyncio\n\nconfig = lazycook.create_assistant("your-api-key", conversation_limit=90)\n\n# Run CLI\nasyncio.run(config.run_cli())', 6)}
+                  className="ml-2 sm:ml-4 px-3 sm:px-5 py-2 sm:py-3 bg-primary/30 hover:bg-primary/40 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-sans hover:scale-105 font-bold flex-shrink-0"
+                >
+                  {copiedIndex === 6 ? (
+                    <><Check className="w-4 h-4 sm:w-5 sm:h-5" /> <span className="hidden sm:inline">Copied!</span></>
+                  ) : (
+                    <><Copy className="w-4 h-4 sm:w-5 sm:h-5" /> <span className="hidden sm:inline">Copy</span></>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 
@@ -103,7 +138,7 @@ export const GettingStarted = () => {
               <div className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-2 sm:py-3 rounded-lg hover:bg-background/10 transition-all duration-200 gap-2">
                 <code className="flex-1 break-all sm:break-normal">python lazycook --api_key "YOUR_GEMINI_KEY"--limit 90</code>
                 <button
-                  onClick={() => copyToClipboard('python lazycook --api_key \"YOUR_GEMINI_KEY\" --limit 90"', 4)}
+                  onClick={() => copyToClipboardHandler('python lazycook --api_key "YOUR_GEMINI_KEY" --limit 90', 4)}
                   className="ml-2 sm:ml-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs font-sans hover:scale-105 flex-shrink-0"
                 >
                   {copiedIndex === 4 ? (
@@ -132,7 +167,7 @@ export const GettingStarted = () => {
               <div className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-3 sm:py-4 rounded-lg hover:bg-background/10 transition-all duration-200 gap-2">
                 <code className="flex-1 text-primary text-base sm:text-lg break-all sm:break-normal">python test.py</code>
                 <button
-                  onClick={() => copyToClipboard('python test.py', 5)}
+                  onClick={() => copyToClipboardHandler('python test.py', 5)}
                   className="ml-2 sm:ml-4 px-3 sm:px-5 py-2 sm:py-3 bg-primary/30 hover:bg-primary/40 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-sans hover:scale-105 font-bold flex-shrink-0"
                 >
                   {copiedIndex === 5 ? (

@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import logoText from "@/assets/logo-text.png";
+import { auth } from "@/lib/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,9 +25,24 @@ export const Navigation = () => {
   ];
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    navigate("/");
+    // Sign out from Firebase and update local state
+    signOut(auth).then(() => {
+      setIsLoggedIn(false);
+      navigate("/");
+    }).catch(() => {
+      // fallback: still clear local state
+      setIsLoggedIn(false);
+      navigate("/");
+    });
   };
+
+  useEffect(() => {
+    // Subscribe to Firebase auth state changes so the navbar updates automatically
+    const unsub = onAuthStateChanged(auth, (user) => {
+      setIsLoggedIn(!!user);
+    });
+    return () => unsub();
+  }, []);
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();

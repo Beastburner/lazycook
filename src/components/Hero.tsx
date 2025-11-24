@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Copy, Check } from "lucide-react";
+import { copyToClipboard } from '@/lib/utils';
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/logo.png";
@@ -54,9 +55,12 @@ export const Hero = () => {
 
   const copyHeroCommand = () => {
     const cmd = 'pip install lazycook';
-    navigator.clipboard.writeText(cmd);
-    setCopiedHero(true);
-    setTimeout(() => setCopiedHero(false), 2000);
+    copyToClipboard(cmd).then((ok) => {
+      if (ok) {
+        setCopiedHero(true);
+        setTimeout(() => setCopiedHero(false), 2000);
+      }
+    });
   };
 
   return (
