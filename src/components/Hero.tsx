@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 import logoText from "@/assets/logo-text.png";
 import installationPDF from "@/assets/InstallationGuide.pdf";
 import requirementsTXT from "@/assets/requirements.txt";
 
 export const Hero = () => {
+  const isLoggedIn = false; // Set to true or false manually for now
   const [typedText, setTypedText] = useState("");
   const [showCursor, setShowCursor] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [copiedHero, setCopiedHero] = useState(false);
   const fullText = "Your AI that cooks up results — not prompts.";
   const navigate = useNavigate();
@@ -36,21 +35,6 @@ export const Hero = () => {
       clearInterval(typingInterval);
       clearInterval(cursorInterval);
     };
-  }, []);
-
-  // Auth session state
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setIsLoggedIn(!!session?.user);
-    };
-    checkSession();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsLoggedIn(!!session?.user);
-    });
-
-    return () => subscription.unsubscribe();
   }, []);
 
   const scrollToSection = (id: string) => {

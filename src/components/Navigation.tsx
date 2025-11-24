@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Menu, X, LogOut, LayoutDashboard, LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate, useLocation } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/logo.png";
 import logoText from "@/assets/logo-text.png";
 
@@ -23,23 +22,7 @@ export const Navigation = () => {
     { label: "Documentation", href: "#documentation" },
   ];
 
-  // Check login session
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      setIsLoggedIn(!!session?.user);
-    };
-    checkSession();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setIsLoggedIn(!!session?.user);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleLogout = () => {
     setIsLoggedIn(false);
     navigate("/");
   };
