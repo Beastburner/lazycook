@@ -128,7 +128,7 @@ export default function Auth() {
       alt="LazyCook Logo"
       className="w-32 h-32 mx-auto mb-4 object-contain transition-all duration-500 hover:scale-105"
     />
-          <h1 className="text-3xl font-bold text-foreground">Welcome to La<span className="text-red-500">z</span>yCook</h1>
+          <h1 className="text-3xl font-bold text-foreground">Welcome to La<span style={{color:'red'}}>z</span>yCook</h1>
           <p className="text-muted-foreground mt-2">
             {isLogin ? "Sign in to continue" : "Create your account"}
           </p>

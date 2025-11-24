@@ -56,7 +56,7 @@ export const GeminiKeyGuide = () => {
               <Key className="w-8 h-8 sm:w-10 sm:h-10 text-primary" />
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground px-2">
-              Get Your <span className="text-gradient">Gemini API Key</span>
+              {`Get Your Gemini API Key`.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}
             </h2>
             <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-2">
               Follow these simple steps to obtain your Google Gemini API key
@@ -95,12 +95,12 @@ export const GeminiKeyGuide = () => {
 
                   {/* Step Content */}
                   <div className="flex-1">
-                    <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
-                      {step.title}
-                    </h3>
-                    <p className="text-base sm:text-lg text-muted-foreground mb-3 sm:mb-4">
-                      {step.description}
-                    </p>
+                        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors duration-300">
+                          {step.title.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}
+                        </h3>
+                        <p className="text-base sm:text-lg text-muted-foreground mb-3 sm:mb-4">
+                          {step.description.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}
+                        </p>
 
                     {/* Link */}
                     {step.link && (
@@ -126,31 +126,31 @@ export const GeminiKeyGuide = () => {
                     )}
 
                     {/* Code Block */}
-                    {step.code && (
-                      <div className="mt-3 sm:mt-4 relative">
-                        <div className="bg-foreground/95 rounded-xl p-3 sm:p-4 md:p-5 pr-12 sm:pr-14 md:pr-16 font-mono text-xs sm:text-sm border-2 border-primary/30 overflow-x-auto">
-                          <code className="text-background whitespace-pre-wrap break-all">{step.code}</code>
-                        </div>
-                        <Button
-                          size="sm"
-                          variant="ghost"
-                          className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 md:top-3 md:right-3 bg-primary/20 hover:bg-primary/30 text-primary hover:scale-105 transition-all duration-200 text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 min-w-[60px] sm:min-w-[80px]"
-                          onClick={() => copyToClipboard(step.code!, index)}
-                        >
-                          {copiedIndex === index ? (
-                            <>
-                              <Check className="h-3 w-3 sm:h-4 sm:w-4" />
-                              <span className="ml-1 hidden xs:inline sm:inline">Copied</span>
-                            </>
-                          ) : (
-                            <>
-                              <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
-                              <span className="ml-1 hidden xs:inline sm:inline">Copy</span>
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                    )}
+                        {step.code && (
+                          <div className="mt-3 sm:mt-4 relative">
+                            <div className="bg-foreground/95 rounded-xl p-3 sm:p-4 md:p-5 pr-12 sm:pr-14 md:pr-16 font-mono text-xs sm:text-sm border-2 border-primary/30 overflow-x-auto">
+                              <code className="text-background whitespace-pre-wrap break-all">{step.code.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</code>
+                            </div>
+                            <Button
+                              size="sm"
+                              variant="ghost"
+                              className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 md:top-3 md:right-3 bg-primary/20 hover:bg-primary/30 text-primary hover:scale-105 transition-all duration-200 text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2 min-w-[60px] sm:min-w-[80px]"
+                              onClick={() => copyToClipboard(step.code!, index)}
+                            >
+                              {copiedIndex === index ? (
+                                <>
+                                  <Check className="h-3 w-3 sm:h-4 sm:w-4" />
+                                  <span className="ml-1 hidden xs:inline sm:inline">Copied</span>
+                                </>
+                              ) : (
+                                <>
+                                  <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
+                                  <span className="ml-1 hidden xs:inline sm:inline">Copy</span>
+                                </>
+                              )}
+                            </Button>
+                          </div>
+                        )}
                   </div>
                 </div>
               </div>
@@ -182,3 +182,6 @@ export const GeminiKeyGuide = () => {
     </section>
   );
 };
+    <li>
+      <strong>Copy your API key:</strong> It will look like <code>AI<span style={{color:'red'}}>Z</span>aSyA...yourkey...</code>
+    </li>

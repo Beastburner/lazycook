@@ -19,7 +19,7 @@ export const Documentation = () => {
     <section id="documentation" className="py-16 sm:py-20 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-12 sm:mb-16 text-foreground text-center px-2">
-          La<span className="text-red-500">z</span>yCook — Documentation (v1.0.2)
+          {`LazyCook — Documentation (v1.0.2)`.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}
         </h2>
 
         <div className="max-w-7xl mx-auto grid lg:grid-cols-[280px_1fr] gap-6 sm:gap-8">
@@ -49,13 +49,8 @@ export const Documentation = () => {
           <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-border overflow-x-auto">
             {activeSection === "overview" && (
               <div>
-                <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-primary">Overview</h3>
-                <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">
-                  LazyCook is an autonomous multi-agent conversational assistant (version <strong>v1.0.2</strong>) authored by
-                  Hitarth Trivedi & Harsh Bhatt . It targets Python 3.10+ and provides an end-to-end assistant that processes
-                  user queries, manages documents, stores conversations, and performs iterative AI reasoning
-                  loops using the Gemini 2.5 Flash model in a four-agent architecture.
-                </p>
+                <h3 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-primary">{`Overview`.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</h3>
+                <p className="text-sm sm:text-base text-foreground mb-4 leading-relaxed">{'LazyCook is an autonomous multi-agent conversational assistant (version v1.0.2) authored by Hitarth Trivedi & Harsh Bhatt . It targets Python 3.10+ and provides an end-to-end assistant that processes user queries, manages documents, stores conversations, and performs iterative AI reasoning loops using the Gemini 2.5 Flash model in a four-agent architecture.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
               </div>
             )}
 
@@ -65,57 +60,39 @@ export const Documentation = () => {
                 <div className="space-y-4 sm:space-y-6">
                   <div className="border-l-4 border-primary pl-3 sm:pl-4">
                     <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Multi-Agent AI System</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Composed of four specialized agents — Generator, Analyzer, Optimizer, Validator — to ensure high-quality responses.
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{'Composed of four specialized agents — Generator, Analyzer, Optimizer, Validator — to ensure high-quality responses.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-3 sm:pl-4">
                     <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Smart Context Management</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Dynamically constructs contextual conversation history from both current and previous sessions.
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{'Dynamically constructs contextual conversation history from both current and previous sessions.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-3 sm:pl-4">
                     <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Document Handling</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Upload, extract, and analyze <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.txt</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.pdf</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.md</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.csv</code> documents with automatic hashing and metadata tracking.
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{'Upload, extract, and analyze .txt, .pdf, .md, .csv documents with automatic hashing and metadata tracking.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-3 sm:pl-4">
                     <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Quality Evaluation System</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Objective & subjective scoring based on accuracy, completeness, structure, and polish.
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{'Objective & subjective scoring based on accuracy, completeness, structure, and polish.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-3 sm:pl-4">
                     <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Task Scheduling</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Automatically creates and tracks tasks related to conversation insights.
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{'Automatically creates and tracks tasks related to conversation insights.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-3 sm:pl-4">
                     <h4 className="font-semibold text-sm sm:text-base text-foreground mb-1 sm:mb-2">Export System</h4>
-                    <p className="text-xs sm:text-sm text-muted-foreground">
-                      Export past conversations to <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.txt</code>, <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.md</code>, or <code className="bg-muted px-1.5 sm:px-2 py-0.5 rounded text-xs sm:text-sm">.json</code> files.
-                    </p>
+                    <p className="text-xs sm:text-sm text-muted-foreground">{'Export past conversations to .txt, .md, or .json files.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">
                     <h4 className="font-semibold text-foreground mb-2">Query Complexity Analyzer</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Routes user queries intelligently using lightweight or full pipelines.
-                    </p>
+                    <p className="text-sm text-muted-foreground">{'Routes user queries intelligently using lightweight or full pipelines.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">
                     <h4 className="font-semibold text-foreground mb-2">Progress & Logging</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Uses the <code className="bg-muted px-2 py-0.5 rounded">rich</code> library for real-time progress bars and visual CLI output.
-                    </p>
+                    <p className="text-sm text-muted-foreground">{'Uses the rich library for real-time progress bars and visual CLI output.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                   <div className="border-l-4 border-primary pl-4">
                     <h4 className="font-semibold text-foreground mb-2">UTF-8 Safe Logging</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Works seamlessly on Windows with enforced UTF-8 encoding.
-                    </p>
+                    <p className="text-sm text-muted-foreground">{'Works seamlessly on Windows with enforced UTF-8 encoding.'.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
                   </div>
                 </div>
               </div>

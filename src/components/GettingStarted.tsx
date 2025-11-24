@@ -21,7 +21,7 @@ export const GettingStarted = () => {
             Getting <span className="text-gradient">Started</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-2">
-            Quick start guide to install, configure, and run LazyCook locally in minutes.
+            Quick start guide to install, configure, and run La<span style={{color:'red'}}>z</span>yCook locally in minutes.
           </p>
         </div>
 
@@ -67,7 +67,11 @@ export const GettingStarted = () => {
                 
               ].map(({ cmd, idx }) => (
                 <div key={idx} className="flex justify-between items-center bg-background/5 px-3 sm:px-4 py-2 sm:py-3 rounded-lg hover:bg-background/10 transition-all duration-200 group/cmd gap-2">
-                  <code className="flex-1 break-all sm:break-normal">{cmd}</code>
+                  <code className="flex-1 break-all sm:break-normal">{cmd.split('').map((char, i) => (
+                    char === 'Z' || char === 'z'
+                      ? <span key={i} style={{ color: 'red' }}>{char}</span>
+                      : char
+                  ))}</code>
                   <button
                     onClick={() => copyToClipboard(cmd, idx)}
                     className="ml-2 sm:ml-4 px-3 sm:px-4 py-1.5 sm:py-2 bg-primary/20 hover:bg-primary/30 text-primary rounded-lg transition-all duration-200 flex items-center gap-1 sm:gap-2 text-xs font-sans hover:scale-105 flex-shrink-0"

@@ -16,7 +16,7 @@ export const About = () => {
         {/* Header */}
         <div className="text-center mb-12 sm:mb-16 md:mb-20 animate-fade-in-up">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 text-foreground">
-            About <span>La<span className="text-red-500">z</span>yCook</span>
+            About <span>La<span style={{color:'red'}}>z</span>yCook</span>
           </h2>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed px-2">
             An <strong className="text-primary">autonomous multi-agent AI assistant</strong> that runs in your terminal. 
@@ -53,10 +53,10 @@ export const About = () => {
               System Architecture
             </h3>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              La<span className="text-red-500">z</span>yCook employs a sophisticated four-agent architecture where each agent plays a specialized role:
+              La<span style={{color:'red'}}>z</span>yCook employs a sophisticated four-agent architecture where each agent plays a speciali<span style={{color:'red'}}>z</span>ed role:
               <strong className="text-foreground"> Generator</strong> creates initial solutions, 
-              <strong className="text-foreground"> Analyzer</strong> evaluates quality, 
-              <strong className="text-foreground"> Optimizer</strong> refines outputs, and 
+              <strong className="text-foreground"> Analy<span style={{color:'red'}}>z</span>er</strong> evaluates quality, 
+              <strong className="text-foreground"> Optimi<span style={{color:'red'}}>z</span>er</strong> refines outputs, and 
               <strong className="text-foreground"> Validator</strong> ensures accuracy. This collaborative approach produces high-quality, 
               reliable responses with minimal user input.
             </p>
@@ -103,8 +103,8 @@ export const About = () => {
                     <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${goal.color}`} />
                   </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors duration-300">{goal.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{goal.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-foreground group-hover:text-primary transition-colors duration-300">{goal.title.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{goal.description.split('').map((char, i) => (char === 'Z' || char === 'z' ? <span key={i} style={{color:'red'}}>{char}</span> : char))}</p>
               </div>
             );
           })}

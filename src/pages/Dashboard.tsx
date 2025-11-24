@@ -162,13 +162,13 @@ export default function Dashboard() {
                   <Package className="w-6 h-6 text-primary/70" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">LazyCook Package</h3>
+                  <h3 className="font-semibold text-foreground">La<span style={{color:'red'}}>z</span>yCook Package</h3>
                   <p className="text-sm text-muted-foreground">Upcoming Release</p>
                 </div>
               </div>
               <p className="text-sm text-muted-foreground mb-4">
-                The full LazyCook package will be available for download soon.
-                No sign-in or tracking — truly zero footprint with us.
+                The full La<span style={{color:'red'}}>z</span>yCook package will be available for download soon.
+                No sign-in or tracking — truly <span style={{color:'red'}}>z</span>ero footprint with us.
               </p>
               <Button
                 size="lg"

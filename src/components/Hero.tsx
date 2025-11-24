@@ -13,6 +13,16 @@ export const Hero = () => {
   const [showCursor, setShowCursor] = useState(true);
   const [copiedHero, setCopiedHero] = useState(false);
   const fullText = "Your AI that cooks up results — not prompts.";
+
+  // Helper to wrap Z/z in red
+  const highlightZ = (text: string) => {
+    return text.split('').map((char, i) => {
+      if (char === 'Z' || char === 'z') {
+        return <span key={i} style={{ color: 'red' }}>{char}</span>;
+      }
+      return char;
+    });
+  };
   const navigate = useNavigate();
 
   // Typing animation
@@ -83,7 +93,11 @@ export const Hero = () => {
               className="relative text-lg sm:text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight text-foreground sm:whitespace-nowrap"
               style={{ fontFamily: '"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif' }}
             >
-              {typedText}
+              {typedText.split('').map((char, i) => (
+                char === 'Z' || char === 'z'
+                  ? <span key={i} style={{ color: 'red' }}>{char}</span>
+                  : char
+              ))}
               <span className={`inline-block w-0.5 sm:w-1 h-6 sm:h-10 md:h-14 ml-1 sm:ml-2 bg-primary ${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}></span>
             </h1>
           </div>
@@ -92,7 +106,11 @@ export const Hero = () => {
           <div className="mb-8 sm:mb-10 px-2">
             <div className="inline-flex items-center gap-2 sm:gap-3 bg-background/80 backdrop-blur-md border-2 border-primary/40 rounded-2xl px-4 sm:px-6 py-2.5 sm:py-3.5 shadow-[0_8px_30px_rgba(198,61,28,0.15)] ring-1 ring-primary/20 hover:ring-primary/40 transition-all duration-300">
               <code className="text-sm sm:text-base md:text-lg text-foreground font-mono tracking-tight">
-                pip install lazycook
+                {'pip install lazycook'.split('').map((char, i) => (
+                  char === 'Z' || char === 'z'
+                    ? <span key={i} style={{ color: 'red' }}>{char}</span>
+                    : char
+                ))}
               </code>
               <button
                 onClick={copyHeroCommand}
@@ -164,12 +182,6 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-primary rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
-        </div>
-      </div>
     </section>
   );
 };
