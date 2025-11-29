@@ -24,10 +24,38 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Publish dist/ to build branch
-        uses: s0/git-publish-subdir-action@develop
+      - name: Publish dist/ to build branch (script)
         env:
           REPO: ${{ github.repository }}
-          BRANCH: build          # <– branch that will hold static files
-          FOLDER: dist           # <– Vite build output
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          echo "Publishing dist/ to branch 'build'..."
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+          BUILD_DIR=dist
+          REMOTE_URL="https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+
+          # Clone or create a temporary repo working tree for the build branch
+          if git ls-remote --exit-code --heads "${REMOTE_URL}" refs/heads/build; then
+            git clone --depth 1 --branch build "${REMOTE_URL}" build_branch || true
+          else
+            git clone --depth 1 "${REMOTE_URL}" build_branch || true
+            cd build_branch || exit 0
+            git checkout --orphan build || true
+            cd ..
+          fi
+
+          # Sync files
+          rm -rf build_branch/* || true
+          mkdir -p build_branch
+          cp -a ${BUILD_DIR}/. build_branch/
+
+          cd build_branch
+          git add --all
+          if git commit -m "Publish dist/ from workflow: ${GITHUB_SHA}"; then
+            git push "${REMOTE_URL}" build --force
+          else
+            echo "No changes to commit"
+          fi
