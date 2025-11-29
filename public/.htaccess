@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Don't rewrite existing files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Rewrite all other requests to index.html (SPA fallback)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Increase upload limits if needed
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
